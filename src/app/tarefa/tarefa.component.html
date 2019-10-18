@@ -1,0 +1,51 @@
+<p>
+  tarefa works!
+</p>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h2>Tarefas</h2>
+    </div>
+  </div>
+  <div id="conteudo">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card">
+        <div class="body">
+          <div class="table-responsive">
+            <table class="table table-hover dashboard-task-infos">
+              <thead>
+              <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Duração</th>
+                <th scope="col">Data de Inicio</th>
+                <th scope="col">Data Fim </th>
+                <th scope="col">Responsalvel</th>
+                <th scope="col">Status</th>
+                <th scope="col" style="padding-left: 50px; padding-right: 50px ">ações</th>
+              </tr>
+              </thead>
+              <tr *ngFor=" let lista of listaTarefas  ">
+                <td>{{ lista.id}}</td>
+                <td>{{ lista.descricao}}</td>
+                <td>{{ lista.dias}}</td>
+                <td>{{ lista.dt_INICIO}}</td>
+                <td>{{ lista.dt_FIM}}</td>
+                <td>{{ lista.responsavel}}</td>
+                <td>{{ lista.status}}</td>
+                <td class="text-center" width="20%">
+                  <button id="{{lista.id}}" class="btn btn-outline-primary btn-lg btn-view" ><i class="mdi mdi-eye mdi-18px"></i></button>
+                  <button id="{{lista.id}}" class="btn btn-outline-warning btn-lg btn-edit"><i class="mdi mdi-pencil mdi-18px"></i></button>
+                  <button id="{{lista.id}}" class="btn btn-outline-danger btn-lg btn-del"><i class="mdi mdi-delete mdi-18px"></i></button>
+                </td>
+              </tr>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

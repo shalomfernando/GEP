@@ -1,0 +1,41 @@
+<p>
+  projetos works!
+</p>
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h2>PROJETOS</h2>
+    </div>
+  </div>
+  <div id="conteudo">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card">
+        <div class="body">
+          <div class="table-responsive">
+            <table class="table table-hover dashboard-task-infos">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome do projeto</th>
+                <th>Sigla</th>
+                <th>Descricao</th>
+                <th>Objetivo</th>
+                <th style="padding-left: 50px; padding-right: 50px">Ações</th>
+              </tr>
+              </thead>
+              <tr *ngFor=" let lista of listaProjetos ">
+                <td>{{ lista.id}}</td>
+                <td>{{ lista.nome}}</td>
+                <td>{{ lista.sigla}}</td>
+                <td>{{ lista.descricao}}</td>
+                <td>{{ lista.objetivo}}</td>
+              </tr>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
