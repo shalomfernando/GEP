@@ -90,7 +90,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": ["node_modules/@fullcalendar/core/locales-all.js"],
             "assets": [
               "src/favicon.ico",
               "src/assets"

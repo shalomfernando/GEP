@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Projetos} from './projetos';
+import {Projetos} from '../model/projetos';
 
 const API = 'https://gep-api.herokuapp.com/Projeto';
 

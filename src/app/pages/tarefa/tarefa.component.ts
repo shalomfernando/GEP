@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {TarefaService} from './tarefa.service';
-import {Tarefa} from './tarefa';
+import {Component, OnInit} from '@angular/core';
+import {Tarefa} from '../../model/tarefa';
+import {TarefaService} from '../../service/tarefa.service';
 
 @Component({
   selector: 'app-tarefa',
@@ -9,8 +9,11 @@ import {Tarefa} from './tarefa';
 })
 export class TarefaComponent implements OnInit {
   listaTarefas: Tarefa[] = [];
+
   constructor(tarefaService: TarefaService) {
-    tarefaService.listar().subscribe( listaTarefas => { this.listaTarefas = listaTarefas; } );
+    tarefaService.listar().subscribe(listaTarefas => {
+      this.listaTarefas = listaTarefas;
+    });
   }
 
   ngOnInit() {

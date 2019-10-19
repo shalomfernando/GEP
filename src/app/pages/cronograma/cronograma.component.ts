@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {CronogramaService} from './cronograma.service';
-import {Cronograma} from './Cronograma';
+import {Cronograma} from '../../model/Cronograma';
+import {CronogramaService} from '../../service/cronograma.service';
 
 @Component({
   selector: 'app-cronograma',

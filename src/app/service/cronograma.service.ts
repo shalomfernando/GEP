@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Cronograma} from './Cronograma';
+import {Cronograma} from '../model/Cronograma';
 
 const API = 'https://gep-api.herokuapp.com/Cronograma';
 

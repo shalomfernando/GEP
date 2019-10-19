@@ -1,37 +1,42 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {StyleDefaultComponent} from './style-default/style-default.component';
-import {HomeComponent} from './home/home.component';
-import {CronogramaComponent} from './cronograma/cronograma.component';
-import {ProjetosComponent} from './projetos/projetos.component';
-import {TarefaComponent} from './tarefa/tarefa.component';
-import {LoginComponent} from './login/login.component';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {StyleDefaultComponent} from './pages/style-default/style-default.component';
+import {HomeComponent} from './pages/home/home.component';
+import {CronogramaComponent} from './pages/cronograma/cronograma.component';
+import {ProjetosComponent} from './pages/projetos/projetos.component';
+import {TarefaComponent} from './pages/tarefa/tarefa.component';
+import {LoginComponent} from './pages/login/login.component';
+import {CalendarioComponent} from './pages/calendario/calendario.component';
 
 const routes: Routes = [
   {
     path: 'style-default',
-    component : StyleDefaultComponent
+    component: StyleDefaultComponent
   }
   ,
   {
     path: 'home',
-    component : HomeComponent
+    component: HomeComponent
   },
   {
     path: 'cronograma',
-    component : CronogramaComponent
+    component: CronogramaComponent
   },
   {
     path: 'projeto',
-    component : ProjetosComponent
+    component: ProjetosComponent
   },
   {
     path: 'tarefa',
-    component : TarefaComponent
+    component: TarefaComponent
   },
   {
     path: 'login',
-    component : LoginComponent
+    component: LoginComponent
+  },
+  {
+    path: 'calendario',
+    component: CalendarioComponent
   },
 ];
 
@@ -39,4 +44,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
