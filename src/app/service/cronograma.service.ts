@@ -1,6 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Cronograma} from '../model/Cronograma';
+import {take} from 'rxjs/operators';
 
 const API = 'https://gep-api.herokuapp.com/Cronograma';
 
@@ -8,13 +9,10 @@ const API = 'https://gep-api.herokuapp.com/Cronograma';
 export class CronogramaService {
   constructor( private http: HttpClient) { }
 
-  Listar() {
+  GET() {
     return this.http.get<Cronograma[]>(API);
   }
-  // cadastrar(cronograma: Cronograma): Observable<Cronograma> {
-  //   return this.http.post<Cronograma>(this.heroesUrl, hero, httpOptions)
-  //     .pipe(
-  //       catchError(this.handleError('addHero', hero))
-  //     );
-  // }
+  POST(cronograma: any) {
+    return this.http.post<Cronograma>(API, cronograma).pipe(take(1));
+  }
 }

@@ -11,15 +11,18 @@ import {TabMenuModule} from 'primeng/tabmenu';
 import {AccordionModule} from 'primeng/accordion';
 import {NavbarComponent} from './pages/navbar/navbar.component';
 import {MenuModule} from 'primeng/menu';
-import {HttpClientModule} from '@angular/common/http';
 import {CalendarioComponent} from './pages/calendario/calendario.component';
-import {FullCalendarModule} from 'primeng/fullcalendar';
 import {HomeComponent} from './pages/home/home.component';
 import {LoginComponent} from './pages/login/login.component';
 import {CronogramaComponent} from './pages/cronograma/cronograma.component';
 import {ProjetosComponent} from './pages/projetos/projetos.component';
 import {TarefaComponent} from './pages/tarefa/tarefa.component';
 import {MenuLateralComponent} from './pages/menu-lateral/menu-lateral.component';
+import {HttpClientModule} from '@angular/common/http';
+import {ToolbarModule} from 'primeng/primeng';
+import {TableModule} from 'primeng/table';
+import {FullCalendarModule} from 'primeng/fullcalendar';
+
 
 @NgModule({
   declarations: [
@@ -42,6 +45,9 @@ import {MenuLateralComponent} from './pages/menu-lateral/menu-lateral.component'
     TabMenuModule,
     AccordionModule,
     MenuModule,
+    HttpClientModule,
+    ToolbarModule,
+    TableModule,
     FullCalendarModule,
     FullCalendarModule,
     FullCalendarModule,

@@ -1,55 +1,96 @@
 <p>
   cronograma works!
 </p>
-<section class="content">
-  <div class="container-fluid">
-    <div class="block-header">
-      <h2>CRONOGRAMA</h2>
-    </div>
-  </div>
-  <div id="conteudo">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="card">
-        <div class="body">
-          <div class="table-responsive">
-            <table class="table table-hover dashboard-task-infos">
-              <thead>
-              <tr>
-                <th scope="col">#ID</th>
-                <th scope="col">PROJETO</th>
-                <th scope="col">DESCRICAO</th>
-                <th scope="col">ORIGEM</th>
-                <th scope="col">LIDER</th>
-                <th scope="col">STATUS</th>
-                <th scope="col">DATA INICIO PREVISTA</th>
-                <th scope="col">DATA FIM PREVISTA</th>
-                <th scope="col">DIAS PREVISTOS</th>
-                <th scope="col">DATA INICIO</th>
-                <th scope="col">DATA FIM</th>
-                <th scope="col">TAREFA</th>
-                <th scope="col" style="padding-left: 60px; padding-right: 60px ">ações</th>
-              </tr>
-              </thead>
-              <tr *ngFor=" let listaCronograma of listaCronograma ">
-                <td>{{ listaCronograma.id}}</td>
-                <td>{{ listaCronograma.projeto}}</td>
-                <td>{{ listaCronograma.descricao}}</td>
-                <td>{{ listaCronograma.origem}}</td>
-                <td>{{ listaCronograma.lider}}</td>
-                <td>{{ listaCronograma.status}}</td>
-                <td>{{ listaCronograma.dt_INICIO_PREV}}</td>
-                <td>{{ listaCronograma.dt_FIM_PREV}}</td>
-                <td>{{ listaCronograma.dias_PREV}}</td>
-                <td>{{ listaCronograma.dt_INICIO}}</td>
-                <td>{{ listaCronograma.dt_FIM}}</td>
-        <!--        <td>{{ listaCronograma.tarefa}}</td>-->
-              </tr>
-              <tbody id = "cronograma">
-              </tbody>
-            </table>
-          </div>
-        </div>
-    </div>
-  </div>
-</div>
-</section>
+<!--<section class="content">-->
+<!--  <div class="container-fluid">-->
+<!--    <div class="block-header">-->
+<!--      <h2>CRONOGRAMA</h2>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div id="conteudo">-->
+<!--    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">-->
+<!--      <div class="card">-->
+<!--        <div class="body">-->
+<!--          <div class="table-responsive">-->
+<!--            <table class="table table-hover dashboard-task-infos">-->
+<!--              <thead>-->
+<!--              <tr>-->
+<!--                <th scope="col">#ID</th>-->
+<!--                <th scope="col">PROJETO</th>-->
+<!--                <th scope="col">DESCRICAO</th>-->
+<!--                <th scope="col">ORIGEM</th>-->
+<!--                <th scope="col">LIDER</th>-->
+<!--                <th scope="col">STATUS</th>-->
+<!--                <th scope="col">DATA INICIO PREVISTA</th>-->
+<!--                <th scope="col">DATA FIM PREVISTA</th>-->
+<!--                <th scope="col">DIAS PREVISTOS</th>-->
+<!--                <th scope="col">DATA INICIO</th>-->
+<!--                <th scope="col">DATA FIM</th>-->
+<!--                <th scope="col">TAREFA</th>-->
+<!--                <th scope="col" style="padding-left: 60px; padding-right: 60px ">ações</th>-->
+<!--              </tr>-->
+<!--              </thead>-->
+<!--              <tr *ngFor=" let listaCronograma of listaCronograma ">-->
+<!--                <td>{{ listaCronograma.id}}</td>-->
+<!--                <td>{{ listaCronograma.projeto}}</td>-->
+<!--                <td>{{ listaCronograma.descricao}}</td>-->
+<!--                <td>{{ listaCronograma.origem}}</td>-->
+<!--                <td>{{ listaCronograma.lider}}</td>-->
+<!--                <td>{{ listaCronograma.status}}</td>-->
+<!--                <td>{{ listaCronograma.dt_INICIO_PREV}}</td>-->
+<!--                <td>{{ listaCronograma.dt_FIM_PREV}}</td>-->
+<!--                <td>{{ listaCronograma.dias_PREV}}</td>-->
+<!--                <td>{{ listaCronograma.dt_INICIO}}</td>-->
+<!--                <td>{{ listaCronograma.dt_FIM}}</td>-->
+<!--        &lt;!&ndash;        <td>{{ listaCronograma.tarefa}}</td>&ndash;&gt;-->
+<!--                <td> <div class="ui-toolbar-group-right">-->
+<!--                  <button pButton type="button" icon="pi pi-search"></button>-->
+<!--                  <button pButton type="button" icon="pi pi-calendar" class="ui-button-success"></button>-->
+<!--                  <button pButton type="button" icon="pi pi-times" class="ui-button-danger"></button>-->
+<!--                </div></td>-->
+<!--              </tr>-->
+<!--              <tbody id = "cronograma">-->
+<!--              </tbody>-->
+<!--            </table>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--</section>-->
+
+<p-table [value]="listaCronograma" [(selection)]="listaCronograma"  selectionMode="single" dataKey="id">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>#ID</th>
+      <th>PROJETO</th>
+      <th>DESCRICAO</th>
+      <th>ORIGEM</th>
+      <th>LIDER</th>
+      <th>STATUS</th>
+      <th>DATA INICIO PREVISTA</th>
+      <th>DATA FIM PREVISTA</th>
+      <th>DIAS PREVISTOS</th>
+      <th>DATA INICIO</th>
+      <th>DATA FIM</th>
+<!--      <th scope="col" style="padding-left: 60px; padding-right: 60px ">ações</th>-->
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-listaCronograma>
+    <tr>
+      <td>{{ listaCronograma.id}}</td>
+      <td>{{ listaCronograma.projeto}}</td>
+      <td>{{ listaCronograma.descricao}}</td>
+      <td>{{ listaCronograma.origem}}</td>
+      <td>{{ listaCronograma.lider}}</td>
+      <td>{{ listaCronograma.status}}</td>
+      <td>{{ listaCronograma.dt_INICIO_PREV}}</td>
+      <td>{{ listaCronograma.dt_FIM_PREV}}</td>
+      <td>{{ listaCronograma.dias_PREV}}</td>
+      <td>{{ listaCronograma.dt_INICIO}}</td>
+      <td>{{ listaCronograma.dt_FIM}}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+
