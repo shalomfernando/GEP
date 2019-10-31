@@ -1,0 +1,10 @@
+<div class="card mt-4">
+  <h4 class="card-header">Calendario</h4>
+  <div class="card-body">
+    <h6></h6>
+    <div *ngIf="loading" class="spinner-border spinner-border-sm">
+    </div>
+    <p-fullCalendar [events]="events" [options]="options"></p-fullCalendar>
+
+  </div>
+</div>
