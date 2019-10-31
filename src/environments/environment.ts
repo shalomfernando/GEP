@@ -5,7 +5,7 @@
 export const environment = {
     production: false,
     // apiUrl: 'http://localhost:8881'
-    apiUrl: 'http://gep-api.herokuapp.com'
+    apiUrl: 'https://gep-api.herokuapp.com'
 };
 
 /*
