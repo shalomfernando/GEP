@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
-import {Cronograma, PostTarefa, Projetos, Tarefa, User} from '@app/_models';
+import {Cronograma, PostTarefa, Projetos, PushTarefa, Tarefa, User} from '@app/_models';
 import {CronogramaService, ProjetoService, TarefaService, UserService} from '@app/_services';
 import {first} from 'rxjs/operators';
+import {ApontamentoTarefa} from "@app/_models/tarefa/apontamento-tarefa";
+import {ApontamentoService} from "@app/_services/apontamento.service";
 
 @Component({
   selector: 'app-tarefa',
@@ -39,7 +41,8 @@ export class TarefaComponent implements OnInit {
               private projetoService: ProjetoService,
               private userService: UserService,
               private messageService: MessageService,
-              private confirma: ConfirmationService) {
+              private confirma: ConfirmationService,
+              private apont: ApontamentoService) {
   }
 
   ngOnInit() {
@@ -51,7 +54,7 @@ export class TarefaComponent implements OnInit {
       this.loading = false;
       this.users = users;
     });
-    // this.tarefaService.listaStatus().subscribe(status => this.listaStatus = status);
+    this.tarefaService.listarStatus().subscribe(status => this.listaStatus = status);
     this.cronogramaService.GET().subscribe(cronograma => this.listaCronograma = cronograma);
     this.projetoService.ListarProjeto().subscribe(projeto => this.listaProjeto = projeto);
 
@@ -61,7 +64,7 @@ export class TarefaComponent implements OnInit {
       {field: 'dt_INICIO', header: 'Data Inicio'},
       {field: 'dt_FIM', header: 'Data Fim'},
       {field: 'responsavel', header: 'Responsavel'},
-      {field: 'status', header: 'Status'}
+      {field: 'status', header: 'Status'},
     ];
   }
 
@@ -86,9 +89,9 @@ export class TarefaComponent implements OnInit {
       taref[this.listaTarefas.indexOf(this.tarefa)] = this.editTarefas;
       console.log(this.editTarefas, this.selectStatus, this.selectUsuario);
 
-      // const tarefa = new PushTarefa(this.editTarefas,this.selectStatus,this.selectUsuario);
-      // console.log(tarefa);
-      // this.tarefaService.atualizarTarefa(tarefa, this.editTarefas.id);
+      const tarefa = new PushTarefa(this.editTarefas,this.selectStatus,this.selectUsuario);
+      console.log(tarefa);
+      this.tarefaService.atualizarTarefa(tarefa, this.editTarefas.id);
     }
 
     this.listaTarefas = taref;
@@ -99,7 +102,8 @@ export class TarefaComponent implements OnInit {
 
   delete() {
 
-    let index = this.listaTarefas.indexOf(this.tarefa);
+    const index = this.listaTarefas.indexOf(this.tarefa);
+    // tslint:disable-next-line:triple-equals
     this.listaTarefas = this.listaTarefas.filter((val, i) => i != index);
     this.editTarefas = null;
     this.displayDialog = false;
@@ -115,11 +119,17 @@ export class TarefaComponent implements OnInit {
   }
 
   cloneTarefa(c: Tarefa): Tarefa {
-    let taref = {};
-    for (let prop in c) {
+    const taref = {};
+    // tslint:disable-next-line:forin
+    for (const prop in c) {
       taref[prop] = c[prop];
     }
-    return <Tarefa>taref;
+    return <Tarefa> taref;
+  }
+
+  obterApontamento(n: number) {
+    const apontamento = new  ApontamentoTarefa(this.editTarefas, this.selectUsuario, n);
+    return this.apont.apontamento(apontamento, this.editTarefas.id).subscribe();
   }
 
 
@@ -159,6 +169,4 @@ export class TarefaComponent implements OnInit {
   showError() {
     this.messageService.add({severity: 'error', summary: 'Operação Cancelada', detail: ':('});
   }
-
-
 }

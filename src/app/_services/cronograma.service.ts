@@ -1,7 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {take} from 'rxjs/operators';
-import {AtualizarCronograma, Cronograma} from '@app/_models';
+import {AtualizarCronograma, Cronograma, PostProjeto} from '@app/_models';
 import {environment} from '@environments/environment';
 
 @Injectable({providedIn: 'root'})
@@ -17,10 +17,11 @@ export class CronogramaService {
   }
 
   PUT(cronograma: AtualizarCronograma, id: number) {
-    return this.http.put<Cronograma[]>(`${environment.apiUrl}/Cronograma`, cronograma).pipe(take(1));
+    return this.http.put<Cronograma>(`${environment.apiUrl}/Cronograma/${id}`, cronograma).pipe(take(1));
+
   }
 
   deletarCronograma(id) {
-    return this.http.delete(`${environment.apiUrl}/Cronograma${id}`).pipe(take(1)).subscribe();
+    return this.http.delete(`${environment.apiUrl}/Cronograma/${id}`).pipe(take(1)).subscribe();
   }
 }

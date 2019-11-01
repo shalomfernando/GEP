@@ -15,21 +15,21 @@ export class ProjetoService {
     return this.http.get<Projetos[]>(`${environment.apiUrl}/Projeto`);
   }
 
-  listarStatus(tipo: string) {
-    return this.http.get<any[]>(`${environment.apiUrl}/UsuarioStatus/Tipo/` + tipo);
-  }
+  // listarStatus(tipo: string) {
+  //   return this.http.get<any[]>(`${environment.apiUrl}/Status/Tipo/` + tipo);
+  // }
 
   salvarProjeto(projeto: PostProjeto) {
-    return this.http.post(API + 'Projeto', projeto);
+    return this.http.post(`${environment.apiUrl}/Projeto`, projeto);
   }
 
   atualizaProjeto(projeto: PushProjeto, id: number) {
     console.log(id);
-    return this.http.put<PostProjeto>(`${API + 'Projeto'}/${id}`, projeto).pipe(take(1));
+    return this.http.put<PostProjeto>(`${environment.apiUrl}/Projeto/${id}`, projeto).pipe(take(1));
   }
 
   deletarProjeto(id: number) {
-    return this.http.delete(`${API}Projeto/${id}`).pipe(take(1)).subscribe();
+    return this.http.delete(`${environment.apiUrl}/Projeto/${id}`).pipe(take(1)).subscribe();
   }
 
 

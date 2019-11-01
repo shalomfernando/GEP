@@ -3,6 +3,7 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 import {AtualizarCronograma, Cronograma, Projetos, SalvarCronograma, User} from '@app/_models';
 import {CronogramaService, ProjetoService, TarefaService, UserService} from '@app/_services';
 import {first} from 'rxjs/operators';
+import {StatusService} from '@app/_services/status.service';
 
 
 @Component({
@@ -56,12 +57,13 @@ export class CronogramaComponent implements OnInit {
               private projetoService: ProjetoService,
               private userService: UserService,
               private messageService: MessageService,
-              private confirma: ConfirmationService) {
+              private confirma: ConfirmationService,
+              private statusService: StatusService) {
   }
 
   ngOnInit() {
     this.projetoService.ListarProjeto().subscribe(listaProjetos => this.projeto = listaProjetos);
-    // this.cronogramaService.listarStatus('CRN').subscribe(listarStatus => this.listarStatus = listarStatus);
+    this.statusService.listarStatus('CRN').subscribe(listarStatus => this.listarStatus = listarStatus);
     this.cronogramaService.GET().subscribe(listaCronograma => {
       this.listaCronograma = listaCronograma;
     });

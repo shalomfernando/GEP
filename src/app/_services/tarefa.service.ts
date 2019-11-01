@@ -31,4 +31,7 @@ export class TarefaService {
     console.log(tarefa, 'id', id);
     return this.http.put<PushTarefa[]>(`${environment.apiUrl}/Tarefa/${id}`, tarefa).pipe(take(1)).subscribe();
   }
+  listarStatus() {
+    return this.http.get<any[]>(`${environment.apiUrl}/Status`);
+  }
 }

@@ -11,5 +11,9 @@ export class Cronograma {
       status: string;
       projeto: string;
       id: number;
+      id_lider: number;
+      id_projeto: number;
+      id_status: number;
       // tarefa: any;
+
 }

@@ -4,9 +4,12 @@
         <a class="nav-item nav-link" routerLink="/">Home</a>
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
     </div>
-  <app-menu-lateral></app-menu-lateral>
+<!--  <app-menu-lateral></app-menu-lateral>-->
 </nav>
 <!-- main app container -->
-<div class="container">
-    <router-outlet></router-outlet>
+<div class="container-Grande">
+<app-menu-novo></app-menu-novo>
+<div class="conteudo">
+  <router-outlet></router-outlet>
+</div>
 </div>

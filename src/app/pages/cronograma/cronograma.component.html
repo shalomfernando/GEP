@@ -9,7 +9,7 @@
 </p-confirmDialog>
 <p-toast [style]="{marginTop: '50px'}"></p-toast>
 
-{{valorAsync|async}}
+<!--{{valorAsync|async}}-->
 <p-table #grdCronograma
          [columns]="colunas"
          [value]="listaCronograma"
@@ -88,7 +88,7 @@
         </div>
         <div class="ui-g-8">
 
-          <p-dropdown id="lider" [options]="listaUsuario" [(ngModel)]="selectUsuario"
+          <p-dropdown id="lider" [options]="users" [(ngModel)]="selectUsuario"
                       placeholder="{{!newCronograma ? editCronograma.lider :'Selecione'}}"  optionLabel="nome" [showClear]="true" required></p-dropdown>
         </div>
       </div>
