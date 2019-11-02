@@ -18,6 +18,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'calendario', component: CalendarioComponent, canActivate: [AuthGuard] },
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  {path: 'Dashboard', component: HomeComponent, canActivate: [AuthGuard] },
   // otherwise redirect to home
   // {path: '**', redirectTo: ''}
 ];

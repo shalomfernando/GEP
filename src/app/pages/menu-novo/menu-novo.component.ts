@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {User} from '@app/_models';
 
 @Component({
   selector: 'app-menu-novo',
@@ -8,19 +9,17 @@ import { Component, OnInit } from '@angular/core';
 export class MenuNovoComponent implements OnInit {
 
   classApplied = false;
-  constructor() { }
+
+  constructor() {
+  }
+
+  user: User;
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(this.user);
   }
 
-  // $('#sidebarCollapse').on('click', function () {
-  //   $('#sidebar').toggleClass('active');
-  // });
-
-  toggle() {
-    // $('#sidebar').toggleClass('active');
-
-  }
   toggleClass() {
     this.classApplied = !this.classApplied;
   }

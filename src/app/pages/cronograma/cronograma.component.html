@@ -24,7 +24,7 @@
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn
-          style="width:300px">
+          style="width:200px; font-size: 0.8rem;text-transform: uppercase;">
         {{col.header}}
         <p-sortIcon [field]="col.field"></p-sortIcon>
       </th>
@@ -43,7 +43,7 @@
 
         <button pButton type="button" icon="pi pi-times" class="ui-button-danger"></button>
       </td>
-      <td *ngFor="let col of columns" style="width:300px">
+      <td *ngFor="let col of columns" style="width:200px; font-size: 0.8rem;text-transform: uppercase;">
         {{rowData[col.field]}}
       </td>
     </tr>
