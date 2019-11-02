@@ -17,10 +17,8 @@ export class AtualizarCronograma {
     this.dt_FIM_PREV = cronograma.dt_FIM_PREV;
     this.dt_INICIO = cronograma.dt_INICIO;
     this.dt_INICIO_PREV = cronograma.dt_INICIO_PREV;
-    this.id_lider = 1; // deve listar todos os liders e verificar qual esta relacionado ao id
-    // this.id_status = status.st_ID;
-     this.id_status = 1;
-    // deve listar todos os o status para assim verificar qual esta relacionado com o id
+    this.id_lider = usuario == null ? cronograma.id_lider : usuario.id;
+    this.id_status = status == null ? cronograma.id_status : status.id ;
     this.nome = cronograma.nome;
     this.origem = cronograma.origem;
   }

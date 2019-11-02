@@ -1,4 +1,8 @@
 export class Tarefa {
+  id_responsavel: number;
+  id_status: number;
+  id_projeto: number;
+  id_cronograma: number;
   descricao: string;
   dias: number;
   dias_PREV: number;

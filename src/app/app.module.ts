@@ -34,7 +34,8 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {appRouting} from '@app/app.routing';
 import {CalendarioComponent} from '@app/pages/calendario/calendario.component';
 import {MenuLateralComponent} from '@app/pages/menu-lateral/menu-lateral.component';
-import {FullCalendarModule} from 'primeng/fullcalendar';
+import {FullCalendarModule} from 'primeng/fullcalendar';;
+import { MenuNovoComponent } from './pages/menu-novo/menu-novo.component'
 
 @NgModule({
   imports: [
@@ -77,6 +78,7 @@ import {FullCalendarModule} from 'primeng/fullcalendar';
     ProjetosComponent,
     TarefaComponent,
     MenuLateralComponent,
+    MenuNovoComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

@@ -10,8 +10,6 @@
   </p-footer>
 </p-confirmDialog>
 <p-toast [style]="{marginTop: '50px'}"></p-toast>
-
-{{editTarefas|json}}
 <p-table #grdProjeto
          [columns]="colunas"
          [value]="listaTarefas"
@@ -47,6 +45,8 @@
       </td>
       <td *ngFor="let col of columns" style="width:300px">
         {{rowData[col.field]}}
+      </td>
+      <td>
       </td>
     </tr>
   </ng-template>
@@ -117,7 +117,7 @@
           <label for="responsavel">Responsavel</label>
         </div>
         <div class="ui-g-8">
-          <p-dropdown id = "responsavel" [options]="listaUsuario" [(ngModel)]="selectUsuario" placeholder="{{!newTarefa  ? editTarefas.responsavel  : 'Selecione'}}"
+          <p-dropdown id = "responsavel" [options]="users" [(ngModel)]="selectUsuario" placeholder="{{!newTarefa  ? editTarefas.responsavel  : 'Selecione'}}"
          optionLabel="nome" [showClear]="true" ></p-dropdown>
 <!--          <input pInputText id="responsavel" type="text" [(ngModel)]="editTarefas.responsavel"/>-->
         </div>
@@ -132,12 +132,19 @@
 <!--          <input pInputText id="status" type="text" [(ngModel)]="editTarefas.status">-->
         </div>
       </div>
+      <div *ngIf="!newTarefa">
+        Apontamento:
+<!--        <button type="button" pButton icon="pi pi-check" (click)="obterApontamento(1)" class="ui-button-warning"></button>-->
+        <button type="button" pButton icon="pi pi-times" (click)="obterApontamento(1)" class="ui-button-danger"></button>
+        <button type="button" pButton icon="pi pi-caret-right" (click)="obterApontamento(2)" class="ui-button-warning"></button>
+        <button type="button" pButton icon="pi pi-check" (click)="obterApontamento(3)" class="ui-button-success"></button>
+      </div>
           <div *ngIf="newTarefa" >
       <div class="ui-g-12">
         <div class="ui-g-4">
           <label for="id_projeto">Projeto</label>
         </div>
-        <div class="ui-g-8">
+        <div class="ui-g-8"  >
           <p-dropdown id = "id_projeto" [options]="listaProjeto" [(ngModel)]="selectProjeto" placeholder="{{ !newTarefa  ? editTarefas.status  : 'Selecione'}}"
                       optionLabel="nome" [showClear]="true" ></p-dropdown>
 <!--          <input pInputText id="id_projeto" type="text" [(ngModel)]="editTarefas.status"/>-->
