@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuNovoComponent implements OnInit {
 
+  classApplied = false;
   constructor() { }
 
   ngOnInit() {
@@ -16,7 +17,11 @@ export class MenuNovoComponent implements OnInit {
   //   $('#sidebar').toggleClass('active');
   // });
 
-  toggle(){
+  toggle() {
+    // $('#sidebar').toggleClass('active');
 
+  }
+  toggleClass() {
+    this.classApplied = !this.classApplied;
   }
 }

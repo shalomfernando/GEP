@@ -10,6 +10,6 @@ export class ApontamentoService {
 
   apontamento(aponta: ApontamentoTarefa, id: number) {
     console.log(id);
-    return this.http.put<ApontamentoTarefa>(`${environment.apiUrl}/Tarefas/Apontamento/${id}`, aponta).pipe(take(1));
+    return this.http.put(`${environment.apiUrl}/Tarefa/Apontamento/${id}`, aponta).pipe(take(1));
   }
 }
