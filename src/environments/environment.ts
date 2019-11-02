@@ -4,8 +4,8 @@
 
 export const environment = {
     production: false,
-    // apiUrl: 'http://localhost:8881'
-    apiUrl: 'https://gep-api.herokuapp.com'
+    apiUrl: 'http://localhost:8881'
+    // apiUrl: 'https://gep-api.herokuapp.com'
 };
 
 /*

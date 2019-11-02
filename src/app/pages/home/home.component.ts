@@ -1,20 +1,22 @@
 ﻿import {Component, OnInit} from '@angular/core';
-
 import {Projetos, User} from '@app/_models';
-import {ProjetoService, UserService} from '@app/_services';
+import {Dashboard} from '@app/_models/Dashboard';
+import {DashboardService} from '@app/_services/dashboard.service';
+
 
 @Component({templateUrl: 'home.component.html'})
 export class HomeComponent implements OnInit {
   loading = false;
   users: User[];
-  data: any;
+  data: Dashboard[];
   ListProjeto: Projetos[];
 
-  constructor(private userService: UserService, private projeto: ProjetoService) {
+  constructor(private dashService: DashboardService ) {
   }
 
   ngOnInit() {
     this.loading = true;
+    this.dashService.listarDash().subscribe(x => this.data = x);
   }
 
 }
