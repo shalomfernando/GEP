@@ -72,6 +72,9 @@
             "production": {
               "browserTarget": "GEPUSJT:build:production"
             }
+          },
+          "es5": {
+            "devServerTarget": ":serve:es5"
           }
         },
         "extract-i18n": {
