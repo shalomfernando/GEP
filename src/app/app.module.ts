@@ -13,7 +13,7 @@ import {JwtInterceptor, ErrorInterceptor} from './_helpers';
 import {ChartModule} from 'primeng/chart';
 import {
   AccordionModule,
-  ButtonModule, ConfirmDialogModule, DialogModule,
+  ButtonModule, CardModule, ConfirmDialogModule, DialogModule,
   InputTextModule, MenuModule, MessageService,
   MessagesModule,
   PaginatorModule,
@@ -62,7 +62,8 @@ import { MenuNovoComponent } from './pages/menu-novo/menu-novo.component'
     ReactiveFormsModule,
     HttpClientModule,
     appRouting,
-    FullCalendarModule
+    FullCalendarModule,
+    CardModule
   ],
   declarations: [
     AppComponent,
