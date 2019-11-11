@@ -13,10 +13,10 @@ export class AtualizarCronograma {
 
   constructor(cronograma: Cronograma, usuario: User, status: any) {
     this.descricao = cronograma.descricao;
-    this.dt_FIM = cronograma.dt_FIM;
-    this.dt_FIM_PREV = cronograma.dt_FIM_PREV;
-    this.dt_INICIO = cronograma.dt_INICIO;
-    this.dt_INICIO_PREV = cronograma.dt_INICIO_PREV;
+    // this.dt_FIM = new Date(cronograma.dt_FIM);
+    // this.dt_FIM_PREV = new Date(cronograma.dt_FIM_PREV);
+    // this.dt_INICIO = new Date(cronograma.dt_INICIO);
+    // this.dt_INICIO_PREV = new Date(cronograma.dt_INICIO_PREV);
     this.id_lider = usuario == null ? cronograma.id_lider : usuario.id;
     this.id_status = status == null ? cronograma.id_status : status.id ;
     this.nome = cronograma.nome;

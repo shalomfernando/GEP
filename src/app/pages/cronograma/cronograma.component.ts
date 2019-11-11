@@ -91,18 +91,18 @@ export class CronogramaComponent implements OnInit {
   }
 
   save() {
-    let crono = [...this.listaCronograma];
+    const crono = [...this.listaCronograma];
 
 
     if (this.newCronograma) {
 
       crono.push(this.editCronograma);
-      let cronograma = new SalvarCronograma(this.editCronograma, this.selectedProjetos, this.selectUsuario);
+      const cronograma = new SalvarCronograma(this.editCronograma, this.selectedProjetos, this.selectUsuario);
       this.cronogramaService.salvarCronograma(cronograma).subscribe();
-
+      console.log(cronograma);
     } else {
       crono[this.listaCronograma.indexOf(this.cronograma)] = this.editCronograma;
-      let cronograma = new AtualizarCronograma(this.editCronograma, this.selectUsuario, this.selectedStatus);
+      const cronograma = new AtualizarCronograma(this.editCronograma, this.selectUsuario, this.selectedStatus);
       this.cronogramaService.PUT(cronograma, this.editCronograma.id).subscribe();
     }
 
@@ -128,7 +128,7 @@ export class CronogramaComponent implements OnInit {
 
   delete() {
 
-    let index = this.listaCronograma.indexOf(this.cronograma);
+    const index = this.listaCronograma.indexOf(this.cronograma);
     this.listaCronograma = this.listaCronograma.filter((val, i) => i != index);
     this.editCronograma = null;
     this.displayDialog = false;
@@ -147,11 +147,11 @@ export class CronogramaComponent implements OnInit {
   }
 
   cloneCronograma(c: Cronograma): Cronograma {
-    let crono = {};
-    for (let prop in c) {
+    const crono = {};
+    for (const prop in c) {
       crono[prop] = c[prop];
     }
-    return <Cronograma>crono;
+    return crono as Cronograma;
   }
 
   confirm() {

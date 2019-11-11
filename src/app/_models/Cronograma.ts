@@ -16,4 +16,10 @@ export class Cronograma {
       id_status: number;
       // tarefa: any;
 
+  // tslint:disable-next-line:variable-name
+  convert( data: string) {
+    const dataa = new Date(data);
+    return data
+  }
+
 }

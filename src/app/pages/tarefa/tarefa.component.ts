@@ -35,6 +35,8 @@ export class TarefaComponent implements OnInit {
 
   listaStatus: any[] = [];
   selectStatus: any;
+  valorAsync: any;
+
 
   constructor(private tarefaService: TarefaService,
               private cronogramaService: CronogramaService,
@@ -98,6 +100,12 @@ export class TarefaComponent implements OnInit {
     this.editTarefas = null;
     this.displayDialog = false;
     this.showSalvo();
+
+    this.valorAsync = new Promise((resolver, reject) => {
+      setTimeout(() => resolver(this.tarefaService.listar().subscribe(listaTarefa => {
+        this.listaTarefas = listaTarefa;
+      })), 1000);
+    });
   }
 
   delete() {

@@ -3,8 +3,10 @@
 </h1>
 <p-confirmDialog #cd header="Confirmação" icon="pi pi-info-circle">
   <p-footer>
-    <button type="button" pButton icon="pi pi-times" class="ui-button-danger" label="Não" (click)="cd.reject()"></button>
-    <button type="button" pButton icon="pi pi-check" class="ui-button-success" label="Sim" (click)="cd.accept()"></button>
+    <button type="button" pButton icon="pi pi-times" class="ui-button-danger" label="Não"
+            (click)="cd.reject()"></button>
+    <button type="button" pButton icon="pi pi-check" class="ui-button-success" label="Sim"
+            (click)="cd.accept()"></button>
   </p-footer>
 </p-confirmDialog>
 <p-toast [style]="{marginTop: '50px'}"></p-toast>
@@ -56,10 +58,10 @@
 </p-table>
 
 <p-dialog header="Cronograma detalhes" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
-          [style]="{width: '900px'}">
+          [style]="{width: '500px'}">
 
   <div class="ui-g ui-fluid" *ngIf="editCronograma">
-    <div class="ui-g-6">
+    <div class="ui-g-12">
       <div class="ui-g-12">
         <div class="ui-g-4">
           <label for="projeto">Projeto</label>
@@ -73,15 +75,15 @@
         </div>
 
       </div>
-      <div class="ui-g-12">
-        <div class="ui-g-4">
-          <label for="Status">Status</label>
-        </div>
-        <div class="ui-g-8">
-          <p-dropdown id="Status" [options]="listarStatus" [(ngModel)]="selectedStatus"
-                      placeholder="{{!newCronograma ? editCronograma.status :'Selecione um Status'}}" optionLabel="st_DESC" [showClear]="true" required></p-dropdown>
-        </div>
-      </div>
+      <!--      <div class="ui-g-12">-->
+      <!--        <div class="ui-g-4">-->
+      <!--          <label for="Status">Status</label>-->
+      <!--        </div>-->
+      <!--        <div class="ui-g-8">-->
+      <!--          <p-dropdown id="Status" [options]="listarStatus" [(ngModel)]="selectedStatus"-->
+      <!--                      placeholder="{{!newCronograma ? editCronograma.status :'Selecione um Status'}}" optionLabel="st_DESC" [showClear]="true" required></p-dropdown>-->
+      <!--        </div>-->
+      <!--      </div>-->
       <div class="ui-g-12">
         <div class="ui-g-4">
           <label for="lider">Lider</label>
@@ -89,7 +91,8 @@
         <div class="ui-g-8">
 
           <p-dropdown id="lider" [options]="users" [(ngModel)]="selectUsuario"
-                      placeholder="{{!newCronograma ? editCronograma.lider :'Selecione'}}"  optionLabel="nome" [showClear]="true" required></p-dropdown>
+                      placeholder="{{!newCronograma ? editCronograma.lider :'Selecione'}}" optionLabel="nome"
+                      [showClear]="true" required></p-dropdown>
         </div>
       </div>
       <div class="ui-g-12">
@@ -97,13 +100,10 @@
           <label for="descricao">Descricão</label>
         </div>
         <div class="ui-g-8">
-          <input pInputText id="descricao" [(ngModel)]="editCronograma.descricao" required/>
-<!--          <textarea pInputText id="descricao" [(ngModel)]="editCronograma.descricao"></textarea>-->
+          <!--          <input pInputText id="descricao" [(ngModel)]="editCronograma.descricao" required/>-->
+          <textarea pInputText id="descricao" rows="5" cols="40"  [(ngModel)]="editCronograma.descricao"></textarea>
         </div>
       </div>
-
-    </div>
-    <div class="ui-g-6">
       <div class="ui-g-12">
         <div class="ui-g-4">
           <label for="origrm" ngForm>Origem</label>
@@ -112,47 +112,13 @@
           <input pInputText id="origrm" [(ngModel)]="editCronograma.origem" required/>
         </div>
       </div>
-      <div class="ui-g-12">
-        <div class="ui-g-4">
-          <label for="dt_INICIO_PREV">Data inicio previsto</label>
-        </div>
-        <div class="ui-g-8">
-          <input pInputText id="dt_INICIO_PREV" type="date" [(ngModel)]="editCronograma.dt_INICIO_PREV" required/>
-        </div>
-      </div>
-      <div class="ui-g-12">
-        <div class="ui-g-4">
-          <label for="dt_FIM_PREV">Data Fim Prevista</label>
-        </div>
-        <div class="ui-g-8">
-          <input pInputText id="dt_FIM_PREV" type="date" [(ngModel)]="editCronograma.dt_FIM_PREV" required/>
-        </div>
-      </div>
-      <div class="ui-g-12">
-        <div class="ui-g-4">
-          <label for="dt_INICIO">Data Inicio</label>
-        </div>
-        <div class="ui-g-8">
-          <input pInputText id="dt_INICIO" type="date" [(ngModel)]="editCronograma.dt_INICIO" required/>
-        </div>
-      </div>
-      <div class="ui-g-12">
-        <div class="ui-g-4">
-          <label for="dt_FIM">Data Final</label>
-        </div>
-        <div class="ui-g-8">
-          <input pInputText id="dt_FIM" type="date" [(ngModel)]="editCronograma.dt_FIM" required/>
-        </div>
-      </div>
-
-
 
     </div>
-
   </div>
   <p-footer>
     <div class="ui-dialog-buttonpane ui-helper-clearfix">
-      <button type="button" pButton icon="pi pi-times" class="ui-button-danger"  (click)="confirm()" label="Delete"></button>
+      <button type="button" pButton icon="pi pi-times" class="ui-button-danger" (click)="confirm()"
+              label="Delete"></button>
       <button type="button" pButton icon="pi pi-check" (click)="save()" label="Salvar"></button>
     </div>
   </p-footer>

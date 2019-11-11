@@ -5,8 +5,10 @@
 
 <p-confirmDialog #cd header="Confirmação" icon="pi pi-info-circle">
   <p-footer>
-    <button type="button" pButton icon="pi pi-times" class="ui-button-danger" label="Não" (click)="cd.reject()"></button>
-    <button type="button" pButton icon="pi pi-check" class="ui-button-success" label="Sim" (click)="cd.accept()"></button>
+    <button type="button" pButton icon="pi pi-times" class="ui-button-danger" label="Não"
+            (click)="cd.reject()"></button>
+    <button type="button" pButton icon="pi pi-check" class="ui-button-success" label="Sim"
+            (click)="cd.accept()"></button>
   </p-footer>
 </p-confirmDialog>
 <p-toast [style]="{marginTop: '50px'}"></p-toast>
@@ -41,7 +43,7 @@
     <tr [pSelectableRow]="rowData">
       <td>
 
-<!--        <button pButton type="button" icon="pi pi-times" class="ui-button-danger"></button>-->
+        <!--        <button pButton type="button" icon="pi pi-times" class="ui-button-danger"></button>-->
       </td>
       <td *ngFor="let col of columns" style="width:180px; font-size: 0.8rem;text-transform: uppercase;">
         {{rowData[col.field]}}
@@ -80,30 +82,12 @@
       </div>
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="dia_inicio">Data inicio</label>
-        </div>
-        <div class="ui-g-8">
-          <input pInputText id="dia_inicio" type="date" [(ngModel)]="editTarefas.dt_INICIO"/>
-        </div>
-      </div>
-      <div class="ui-g-12">
-        <div class="ui-g-4">
-          <label for="dia_fim">Data Fim</label>
-        </div>
-        <div class="ui-g-8">
-          <input pInputText id="dia_fim" type="date" [(ngModel)]="editTarefas.dt_FIM"/>
-        </div>
-      </div>
-      <div class="ui-g-12">
-        <div class="ui-g-4">
           <label for="data_inicio_previsto">Data Inicio Previsto</label>
         </div>
         <div class="ui-g-8">
           <input pInputText id="data_inicio_previsto" type="date" [(ngModel)]="editTarefas.dt_INICIO_PREV "/>
         </div>
       </div>
-    </div>
-    <div class="ui-g-6">
       <div class="ui-g-12">
         <div class="ui-g-4">
           <label for="dt_fim_previsto">Data Fim Previsto</label>
@@ -112,73 +96,69 @@
           <input pInputText id="dt_fim_previsto" type="date" [(ngModel)]="editTarefas.dt_FIM_PREV"/>
         </div>
       </div>
+    </div>
+    <div class="ui-g-6">
       <div class="ui-g-12">
         <div class="ui-g-4">
           <label for="responsavel">Responsavel</label>
         </div>
         <div class="ui-g-8">
-          <p-dropdown id = "responsavel" [options]="users" [(ngModel)]="selectUsuario" placeholder="{{!newTarefa  ? editTarefas.responsavel  : 'Selecione'}}"
-         optionLabel="nome" [showClear]="true" ></p-dropdown>
-<!--          <input pInputText id="responsavel" type="text" [(ngModel)]="editTarefas.responsavel"/>-->
-        </div>
-      </div>
-      <div class="ui-g-12">
-        <div class="ui-g-4">
-          <label for="status">Status</label>
-        </div>
-        <div class="ui-g-8">
-          <p-dropdown id = "status" [options]="listaStatus" [(ngModel)]="selectStatus" placeholder="{{ !newTarefa  ? editTarefas.status  : 'Selecione'}}"
-                      optionLabel="st_DESC" [showClear]="true" ></p-dropdown>
-<!--          <input pInputText id="status" type="text" [(ngModel)]="editTarefas.status">-->
+          <p-dropdown id="responsavel" [options]="users" [(ngModel)]="selectUsuario"
+                      placeholder="{{!newTarefa  ? editTarefas.responsavel  : 'Selecione'}}"
+                      optionLabel="nome" [showClear]="true"></p-dropdown>
+          <!--          <input pInputText id="responsavel" type="text" [(ngModel)]="editTarefas.responsavel"/>-->
         </div>
       </div>
       <div *ngIf="!newTarefa">
-        Apontamento:
-<!--        <button type="button" pButton icon="pi pi-check" (click)="obterApontamento(1)" class="ui-button-warning"></button>-->
-        <button type="button" pButton icon="pi pi-times" (click)="obterApontamento(1)" class="ui-button-danger"></button>
-        <button type="button" pButton icon="pi pi-caret-right" (click)="obterApontamento(2)" class="ui-button-warning"></button>
-        <button type="button" pButton icon="pi pi-check" (click)="obterApontamento(3)" class="ui-button-success"></button>
-      </div>
-          <div *ngIf="newTarefa" >
-      <div class="ui-g-12">
-        <div class="ui-g-4">
-          <label for="id_projeto">Projeto</label>
-        </div>
-        <div class="ui-g-8"  >
-          <p-dropdown id = "id_projeto" [options]="listaProjeto" [(ngModel)]="selectProjeto" placeholder="{{ !newTarefa  ? editTarefas.status  : 'Selecione'}}"
-                      optionLabel="nome" [showClear]="true" ></p-dropdown>
-<!--          <input pInputText id="id_projeto" type="text" [(ngModel)]="editTarefas.status"/>-->
-        </div>
-      </div>
+        <div class="ui-g-12">
+          <div class="ui-g-12">
 
-      <div class="ui-g-12">
-        <div class="ui-g-4">
-          <label for="id_cronograma">Cronograma</label>
+            Apontamento:
+            <!--        <button type="button" pButton icon="pi pi-check" (click)="obterApontamento(1)" class="ui-button-warning"></button>-->
+            <button type="button" pButton icon="pi pi-times" (click)="obterApontamento(1)"
+                    class="ui-button-danger"></button>
+            <button type="button" pButton icon="pi pi-caret-right" (click)="obterApontamento(2)"
+                    class="ui-button-warning"></button>
+            <button type="button" pButton icon="pi pi-check" (click)="obterApontamento(3)"
+                    class="ui-button-success"></button>
+          </div>
         </div>
-        <div class="ui-g-8">
-          <p-dropdown id = "id_cronograma" [options]="listaCronograma" [(ngModel)]="selectCronograma" placeholder="{{ !newTarefa  ? editTarefas.status  : 'Selecione'}}"
-                      optionLabel="nome" [showClear]="true" ></p-dropdown>
-<!--          <input pInputText id="id_cronograma" type="text" [(ngModel)]="editTarefas.status"/>-->
-        </div>
+
       </div>
+      <div *ngIf="newTarefa">
+        <div class="ui-g-12">
+          <div class="ui-g-4">
+            <label for="id_projeto">Projeto</label>
+          </div>
+          <div class="ui-g-8">
+            <p-dropdown id="id_projeto" [options]="listaProjeto" [(ngModel)]="selectProjeto"
+                        placeholder="{{ !newTarefa  ? editTarefas.status  : 'Selecione'}}"
+                        optionLabel="nome" [showClear]="true"></p-dropdown>
+            <!--          <input pInputText id="id_projeto" type="text" [(ngModel)]="editTarefas.status"/>-->
+          </div>
+        </div>
+
+        <div class="ui-g-12">
+          <div class="ui-g-4">
+            <label for="id_cronograma">Cronograma</label>
+          </div>
+          <div class="ui-g-8">
+            <p-dropdown id="id_cronograma" [options]="listaCronograma" [(ngModel)]="selectCronograma"
+                        placeholder="{{ !newTarefa  ? editTarefas.status  : 'Selecione'}}"
+                        optionLabel="nome" [showClear]="true"></p-dropdown>
+            <!--          <input pInputText id="id_cronograma" type="text" [(ngModel)]="editTarefas.status"/>-->
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <p-footer>
     <div class="ui-dialog-buttonpane ui-helper-clearfix">
-      <button type="button" pButton icon="pi pi-times" class="ui-button-danger"  (click)="confirm()" label="Delete"></button>
+      <button type="button" pButton icon="pi pi-times" class="ui-button-danger" (click)="confirm()"
+              label="Delete"></button>
       <button type="button" pButton icon="pi pi-check" (click)="save()" label="Salvar"></button>
     </div>
   </p-footer>
 </p-dialog>
 
 
-<!--/*descricao: string;-->
-<!--dt_FIM: any;-->
-<!--dt_FIM_PREV: any;-->
-<!--dt_INICIO: any;-->
-<!--dt_INICIO_PREV: any;-->
-<!--idUser: number;-->
-<!--id_cronograma: number;-->
-<!--id_projeto: number;-->
-<!--id_responsavel: number;*/-->

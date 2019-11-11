@@ -25,6 +25,8 @@ export class ProjetosComponent implements OnInit {
 
   displayDelete: boolean;
   msgs: Message[] = [];
+  valorAsync: any;
+
 
   constructor(private projetoService: ProjetoService, private messageService: MessageService, private confirma: ConfirmationService) {
   }
@@ -63,6 +65,12 @@ export class ProjetosComponent implements OnInit {
       let projeto = new PushProjeto(this.editProjetos);
       this.projetoService.atualizaProjeto(projeto, this.editProjetos.id).subscribe();
     }
+
+    this.valorAsync = new Promise((resolver, reject) => {
+      setTimeout(() => resolver(this.projetoService.ListarProjeto().subscribe(listaCronograma => {
+        this.listaProjetos = listaCronograma;
+      })), 1000);
+    });
 
     this.listaProjetos = proje;
     this.editProjetos = null;
