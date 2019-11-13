@@ -30,14 +30,16 @@
       <div>
         <ejs-grid [dataSource]="datas"
                   [allowPaging]='true'
+                  [pageSettings]="pageOptions"
                   [allowSorting]="true"
                   [allowFiltering]="true"
-                  [filterSettings]='filterSettings'>
+                  [filterSettings]='filterSettings'
+                  [locale]='pt-br'>
           <e-columns>
-            <e-column field='OrderID' headerText='Order ID' textAlign='Right' width='120'></e-column>
-            <e-column field='CustomerID' headerText='Customer ID' width='120'></e-column>
-            <e-column field='Freight' textAlign='Right' format='c2' width='120'></e-column>
-            <e-column field='ShipCountry' headerText='Ship Country' width='140'></e-column>
+            <e-column field='ID' headerText='ID' textAlign='Right' width='120'></e-column>
+            <e-column field='NOME' headerText='NOME' width='120'></e-column>
+            <e-column field='VALOR' textAlign='Right' format='c2' width='120'></e-column>
+            <e-column field='PAÍS' headerText='PAÍS' width='140'></e-column>
           </e-columns>
         </ejs-grid>
       </div>
