@@ -17,7 +17,6 @@ export class MenuNovoComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.user);
   }
 
   toggleClass() {

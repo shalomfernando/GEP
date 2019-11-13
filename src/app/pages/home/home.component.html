@@ -1,59 +1,63 @@
-﻿  <div class="p-grid">
-    <div class="p-col">
-      <p-card header="Projetos concluidos" [style]="{width: '347px'}">
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
-          numquam deserunt
-          quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-          quas!
-        </div>
-      </p-card>
-    </div>
-    <div class="p-col">
-      <p-card header="Cronogramas concluidos" [style]="{width: '347px'}">
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
-          numquam
-          deserunt
-          quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-          quas!
-        </div>
-      </p-card>
-    </div>
-    <div class="p-col">
-      <p-card header="Porcetagem de tarefas concluidas" [style]="{width: '347px'}">
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
-          numquam
-          deserunt
-          quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-          quas!
-        </div>
-      </p-card>
-    </div>
+﻿<div class="p-grid">
+  <div class="p-col">
+    <p-card header="Projetos concluídos" [style]="{width: '347px'}">
+      <div>
+        <p-progressBar [value]="progresso.porcentagem_projeto"></p-progressBar>
+      </div>
+      <p>{{progresso.projeto}} concluídos.</p>
+    </p-card>
   </div>
-  <div class="p-grid">
-    <div class="p-col">
-      <p-card header="Colaboradores" [style]="{width: '450px'}">
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
-          numquam deserunt
-          quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-          quas!
-        </div>
-      </p-card>
-    </div>
-    <div class="p-col">
-      <p-card header="Grafico de andamentos do mês" [style]="{width: '600px'}">
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
-          numquam
-          deserunt
-          quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-          quas!
-        </div>
-      </p-card>
-    </div>
+  <div class="p-col">
+    <p-card header="Cronogramas concluidos" [style]="{width: '347px'}">
+      <div>
+        <p-progressBar [value]="progresso.porcentagem_cronograma"></p-progressBar>
+      </div>
+      <p>{{progresso.cronograma}} concluídos.</p>
+    </p-card>
   </div>
-  <div class="p-grid">
-    <div class="p-col">
-      <p-card header="Calendario" [style]="{width: '1080px'}">
-        <app-calendario></app-calendario>
-      </p-card>
-    </div>
+  <div class="p-col">
+    <p-card header="Tarefas concluidas" [style]="{width: '347px'}">
+      <div>
+        <p-progressBar [value]="progresso.porcentagem_tarefa"></p-progressBar>
+      </div>
+      <p>{{progresso.tarefa}} concluídos.</p>
+    </p-card>
   </div>
+</div>
+<div class="p-grid">
+  <div class="p-col">
+    <p-card header="Colaboradores" [style]="{width: '450px'}">
+      <div>
+        <ejs-grid [dataSource]="datas"
+                  [allowPaging]='true'
+                  [allowSorting]="true"
+                  [allowFiltering]="true"
+                  [filterSettings]='filterSettings'>
+          <e-columns>
+            <e-column field='OrderID' headerText='Order ID' textAlign='Right' width='120'></e-column>
+            <e-column field='CustomerID' headerText='Customer ID' width='120'></e-column>
+            <e-column field='Freight' textAlign='Right' format='c2' width='120'></e-column>
+            <e-column field='ShipCountry' headerText='Ship Country' width='140'></e-column>
+          </e-columns>
+        </ejs-grid>
+      </div>
+    </p-card>
+  </div>
+  <div class="p-col">
+    <p-card header="Grafico de andamentos do mês" [style]="{width: '600px'}">
+      <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
+        numquam
+        deserunt
+        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
+        quas!
+      </div>
+    </p-card>
+  </div>
+</div>
+<div class="p-grid">
+  <div class="p-col">
+    <p-card header="Calendario" [style]="{width: '1080px'}">
+      <app-calendario></app-calendario>
+    </p-card>
+  </div>
+</div>
