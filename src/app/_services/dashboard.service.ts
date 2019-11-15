@@ -3,6 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '@environments/environment';
 import {Dashboard} from '@app/_models/Dashboard';
 import {ProgressoHome} from "@app/_models/ProgressoHome";
+import {Colaborador} from "@app/_models/Colaborador";
+import {ColumnsTarefas} from "@app/_models/ColumnsTarefas";
 
 @Injectable({providedIn: 'root'})
 export class DashboardService {
@@ -15,6 +17,14 @@ export class DashboardService {
 
   listarProgresso(){
     return this.http.get<ProgressoHome>(`${environment.apiUrl}/api/Dashboard/Progresso`);
+  }
+
+  listarColaboradores(){
+    return this.http.get<Colaborador[]>(`${environment.apiUrl}/api/Dashboard/Colaboradores`)
+  }
+
+  listarDashGrid(){
+    return this.http.get<ColumnsTarefas[]>(`${environment.apiUrl}/api/Dashboard/Grid`)
   }
 
 }

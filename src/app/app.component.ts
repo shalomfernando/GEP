@@ -6,10 +6,10 @@ import {User} from './_models';
 
 import {L10n, setCulture} from '@syncfusion/ej2-base';
 
-setCulture('pt-br');
+setCulture('pt_br');
 
 L10n.load({
-  'pt-br': {
+  'pt_br': {
     'grid': {
       'EmptyRecord': 'Nenhum registro para exibir',
       'EmptyDataSourceError': 'A fonte de dados deve ficar em branco no carregamento inicial, pois as colunas da fonte de dados são criadas na coluna Gerada automaticamente da grade',

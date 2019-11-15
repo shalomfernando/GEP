@@ -25,41 +25,27 @@
   </div>
 </div>
 <div class="p-grid">
-  <div class="p-col">
-    <p-card header="Colaboradores" [style]="{width: '450px'}">
-      <div>
-        <ejs-grid [dataSource]="datas"
-                  [allowPaging]='true'
-                  [pageSettings]="pageOptions"
-                  [allowSorting]="true"
-                  [allowFiltering]="true"
-                  [filterSettings]='filterSettings'
-                  >
-          <e-columns>
-            <e-column field='ID' headerText='ID' textAlign='Right' width='120'></e-column>
-            <e-column field='NOME' headerText='NOME' width='120'></e-column>
-            <e-column field='VALOR' textAlign='Right' format='c2' width='120'></e-column>
-            <e-column field='PAÍS' headerText='PAÍS' width='140'></e-column>
-          </e-columns>
-        </ejs-grid>
-      </div>
-    </p-card>
+  <div class="p-col" >
+          <ejs-grid height='385'
+                    [dataSource]="colaboradores"
+                    [allowPaging]='true'
+                    [pageSettings]="pageOptions"
+                    [allowSorting]="true"
+                    [allowFiltering]="true"
+                    [filterSettings]='filterSettings'
+                    locale='pt_br'>
+            <e-columns>
+              <e-column field='id' headerText='ID' textAlign='Right' width='100'></e-column>
+              <e-column field='nome' headerText='NOME' width='200'></e-column>
+              <e-column field='tarefas' textAlign='Right' format='c2' width='120'></e-column>
+              <e-column field='finalizadas' headerText='Finalizadas' width='140'></e-column>
+            </e-columns>
+          </ejs-grid>
   </div>
   <div class="p-col">
-    <p-card header="Grafico de andamentos do mês" [style]="{width: '600px'}">
-      <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
-        numquam
-        deserunt
-        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-        quas!
+    <p-card [style]="{width: '439px'}">
+      <div><app-dashboard></app-dashboard>
       </div>
-    </p-card>
-  </div>
-</div>
-<div class="p-grid">
-  <div class="p-col">
-    <p-card header="Calendario" [style]="{width: '1080px'}">
-      <app-calendario></app-calendario>
     </p-card>
   </div>
 </div>
