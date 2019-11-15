@@ -1,15 +1,19 @@
-﻿<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/">Home</a>
-        <a class="nav-item nav-link" (click)="logout()">Logout</a>
-    </div>
-<!--  <app-menu-lateral></app-menu-lateral>-->
-</nav>
-<!-- main app container -->
-<div class="container-Grande">
-<app-menu-novo></app-menu-novo>
-<div class="conteudo">
-  <router-outlet></router-outlet>
-</div>
-</div>
+﻿<!--&lt;!&ndash; nav &ndash;&gt;-->
+<!--<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">-->
+<!--    <div class="navbar-nav">-->
+<!--        <a class="nav-item nav-link" routerLink="/">Home</a>-->
+<!--        <a class="nav-item nav-link" (click)="logout()">Logout</a>-->
+<!--    </div>-->
+<!--&lt;!&ndash;  <app-menu-lateral></app-menu-lateral>&ndash;&gt;-->
+<!--</nav>-->
+<!--&lt;!&ndash; main app container &ndash;&gt;-->
+<!--<div class="container-Grande">-->
+<!--<app-menu-novo></app-menu-novo>-->
+<!--<div class="conteudo">-->
+<!--  <router-outlet></router-outlet>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<app-navbar></app-navbar>
+<!--<router-outlet></router-outlet>-->

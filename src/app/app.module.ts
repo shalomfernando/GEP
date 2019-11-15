@@ -41,7 +41,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { GridModule } from '@syncfusion/ej2-angular-grids';
 
 
-import {MenuNovoComponent} from './pages/menu-novo/menu-novo.component'
+import {MenuNovoComponent} from './pages/menu-novo/menu-novo.component';
+import {SidebarModule} from '@syncfusion/ej2-angular-navigations';
 
 @NgModule({
   imports: [
@@ -73,7 +74,7 @@ import {MenuNovoComponent} from './pages/menu-novo/menu-novo.component'
     ProgressBarModule,
     MatSliderModule,
     MatProgressSpinnerModule,
-    GridModule
+    GridModule, SidebarModule
   ],
   declarations: [
     AppComponent,

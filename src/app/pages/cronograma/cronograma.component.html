@@ -19,50 +19,50 @@
 <p-toast [style]="{marginTop: '50px'}"></p-toast>
 
 <!--{{valorAsync|async}}-->
-<p-table #grdCronograma
-         [columns]="colunas"
-         [value]="listaCronograma"
-         [paginator]="true"
-         [rows]="10"
-         [resizableColumns]="true"
-         [reorderableColumns]="true"
-         selectionMode="single"
-         [(selection)]="cronograma"
-         [scrollable]="true" scrollHeight="400px"
-         (onRowSelect)="onRowSelect($event)">
-  <ng-template pTemplate="header" let-columns>
-    <tr>
-      <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn
-          style="width:200px; font-size: 0.8rem;text-transform: uppercase;">
-        {{col.header}}
-        <p-sortIcon [field]="col.field"></p-sortIcon>
-      </th>
-    </tr>
-    <tr>
-      <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">
-        <input pInputText type="text"
-               (input)="grdCronograma.filter($event.target.value, col.field, col.filterMatchMode)"
-               [value]="grdCronograma.filters[col.field]?.value">
-      </th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-rowData let-columns="columns">
-    <tr [pSelectableRow]="rowData">
-      <td>
+<!--<p-table #grdCronograma-->
+<!--         [columns]="colunas"-->
+<!--         [value]="listaCronograma"-->
+<!--         [paginator]="true"-->
+<!--         [rows]="10"-->
+<!--         [resizableColumns]="true"-->
+<!--         [reorderableColumns]="true"-->
+<!--         selectionMode="single"-->
+<!--         [(selection)]="cronograma"-->
+<!--         [scrollable]="true" scrollHeight="400px"-->
+<!--         (onRowSelect)="onRowSelect($event)">-->
+<!--  <ng-template pTemplate="header" let-columns>-->
+<!--    <tr>-->
+<!--      <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn-->
+<!--          style="width:200px; font-size: 0.8rem;text-transform: uppercase;">-->
+<!--        {{col.header}}-->
+<!--        <p-sortIcon [field]="col.field"></p-sortIcon>-->
+<!--      </th>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">-->
+<!--        <input pInputText type="text"-->
+<!--               (input)="grdCronograma.filter($event.target.value, col.field, col.filterMatchMode)"-->
+<!--               [value]="grdCronograma.filters[col.field]?.value">-->
+<!--      </th>-->
+<!--    </tr>-->
+<!--  </ng-template>-->
+<!--  <ng-template pTemplate="body" let-rowData let-columns="columns">-->
+<!--    <tr [pSelectableRow]="rowData">-->
+<!--      <td>-->
 
-        <button pButton type="button" icon="pi pi-times" class="ui-button-danger"></button>
-      </td>
-      <td *ngFor="let col of columns" style="width:200px; font-size: 0.8rem;text-transform: uppercase;">
-        {{rowData[col.field]}}
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="summary" let-rowData>
-    <div style="text-align:left">
-      <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
-    </div>
-  </ng-template>
-</p-table>
+<!--        <button pButton type="button" icon="pi pi-times" class="ui-button-danger"></button>-->
+<!--      </td>-->
+<!--      <td *ngFor="let col of columns" style="width:200px; font-size: 0.8rem;text-transform: uppercase;">-->
+<!--        {{rowData[col.field]}}-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--  </ng-template>-->
+<!--  <ng-template pTemplate="summary" let-rowData>-->
+<!--    <div style="text-align:left">-->
+<!--      <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>-->
+<!--    </div>-->
+<!--  </ng-template>-->
+<!--</p-table>-->
 
 <p-dialog header="Cronograma detalhes" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
           [style]="{width: '500px'}">
@@ -131,3 +131,31 @@
     </div>
   </p-footer>
 </p-dialog>
+
+
+<div class="p-grid">
+  <div class="p-col">
+    <p-card header="Projetos">
+      <div style="text-align:right">
+        <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
+      </div>
+      <div>
+        <ejs-grid [dataSource]="listaCronograma"
+                  [allowPaging]='true'
+                  [pageSettings]="pageOptions"
+                  [allowSorting]="true"
+                  [allowFiltering]="true"
+                  [filterSettings]='filterSettings'
+                  (rowSelecting)="onRowSelect($event)"
+        >
+          <e-columns *ngFor="let col of colunas ">
+            <e-column class="texto-tabela" field='{{col.field}}' headerText='{{col.header}}' textAlign='Right'
+                      width='120'></e-column>
+          </e-columns>
+        </ejs-grid>
+      </div>
+    </p-card>
+
+  </div>
+
+</div>

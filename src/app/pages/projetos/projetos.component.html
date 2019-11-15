@@ -1,59 +1,60 @@
-<h1>
-  Projetos
-</h1>
+<!--<h1>-->
+<!--  Projetos-->
+<!--</h1>-->
 <p-confirmDialog #cd header="Confirmação" icon="pi pi-info-circle">
   <p-footer>
-    <button type="button" pButton icon="pi pi-times" class="ui-button-danger" label="Não" (click)="cd.reject()"></button>
-    <button type="button" pButton icon="pi pi-check" class="ui-button-success" label="Sim" (click)="cd.accept()"></button>
+    <button type="button" pButton icon="pi pi-times" class="ui-button-danger" label="Não"
+            (click)="cd.reject()"></button>
+    <button type="button" pButton icon="pi pi-check" class="ui-button-success" label="Sim"
+            (click)="cd.accept()"></button>
   </p-footer>
 </p-confirmDialog>
 <p-toast [style]="{marginTop: '50px'}"></p-toast>
-<p-table #grdProjeto
-         [columns]="colunas"
-         [value]="listaProjetos"
-         [paginator]="true"
-         [rows]="10"
-         [resizableColumns]="true"
-         [reorderableColumns]="true"
-         selectionMode="single"
-         [(selection)]="projetos"
-         [scrollable]="true" scrollHeight="400px"
-         (onRowSelect)="onRowSelect($event)">
-  <ng-template pTemplate="header" let-columns>
-    <tr>
-      <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn
-          style="width:150px; font-size: 0.8rem;text-transform: uppercase;">
-        {{col.header}}
-        <p-sortIcon [field]="col.field"></p-sortIcon>
-      </th>
-    </tr>
-    <tr>
-      <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">
-        <input pInputText type="text"
-               (input)="grdProjeto.filter($event.target.value, col.field, col.filterMatchMode)"
-               [value]="grdProjeto.filters[col.field]?.value">
-      </th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-rowData let-columns="columns">
-    <tr [pSelectableRow]="rowData">
-<!--      <td>-->
+<!--<p-table #grdProjeto-->
+<!--         [columns]="colunas"-->
+<!--         [value]="listaProjetos"-->
+<!--         [paginator]="true"-->
+<!--         [rows]="10"-->
+<!--         [resizableColumns]="true"-->
+<!--         [reorderableColumns]="true"-->
+<!--         selectionMode="single"-->
+<!--         [(selection)]="projetos"-->
+<!--         [scrollable]="true" scrollHeight="400px"-->
+<!--         (onRowSelect)="onRowSelect($event)">-->
+<!--  <ng-template pTemplate="header" let-columns>-->
+<!--    <tr>-->
+<!--      <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn-->
+<!--          style="width:150px; font-size: 0.8rem;text-transform: uppercase;">-->
+<!--        {{col.header}}-->
+<!--        <p-sortIcon [field]="col.field"></p-sortIcon>-->
+<!--      </th>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">-->
+<!--        <input pInputText type="text"-->
+<!--               (input)="grdProjeto.filter($event.target.value, col.field, col.filterMatchMode)"-->
+<!--               [value]="grdProjeto.filters[col.field]?.value">-->
+<!--      </th>-->
+<!--    </tr>-->
+<!--  </ng-template>-->
+<!--  <ng-template pTemplate="body" let-rowData let-columns="columns">-->
+<!--    <tr [pSelectableRow]="rowData">-->
+<!--      &lt;!&ndash;      <td>&ndash;&gt;-->
 
-<!--        <button pButton type="button" icon="pi pi-times" class="ui-button-danger"></button>-->
+<!--      &lt;!&ndash;        <button pButton type="button" icon="pi pi-times" class="ui-button-danger"></button>&ndash;&gt;-->
+<!--      &lt;!&ndash;      </td>&ndash;&gt;-->
+<!--      <td *ngFor="let col of columns" style="width:150px; font-size: 0.8rem;text-transform: uppercase;">-->
+<!--        {{rowData[col.field]}}-->
 <!--      </td>-->
-      <td *ngFor="let col of columns" style="width:150px; font-size: 0.8rem;text-transform: uppercase;">
-        {{rowData[col.field]}}
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="summary" let-rowData>
-    <div style="text-align:left">
-      <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
-    </div>
-  </ng-template>
-</p-table>
-
-
+<!--    </tr>-->
+<!--  </ng-template>-->
+<!--  <ng-template pTemplate="summary" let-rowData>-->
+<!--    <div style="text-align:left">-->
+<!--      <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>-->
+<!--    </div>-->
+<!--  </ng-template>-->
+<!--</p-table>-->
+<!--{{ |projetos}}-->
 
 <p-dialog header="Projeto detalhes" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
           [style]="{width: '500px'}">
@@ -96,10 +97,36 @@
   </div>
   <p-footer>
     <div class="ui-dialog-buttonpane ui-helper-clearfix">
-      <button type="button" pButton icon="pi pi-times" class="ui-button-danger" (click)="confirm()" label="Delete"></button>
-      <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save" ></button>
+      <button type="button" pButton icon="pi pi-times" class="ui-button-danger" (click)="confirm()"
+              label="Delete"></button>
+      <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
     </div>
   </p-footer>
 </p-dialog>
+<div class="p-grid">
+  <div class="p-col">
+    <p-card header="Projetos">
+      <div style="text-align:right">
+        <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
+      </div>
+      <div>
+        <ejs-grid [dataSource]="listaProjetos"
+                  [allowPaging]='true'
+                  [pageSettings]="pageOptions"
+                  [allowSorting]="true"
+                  [allowFiltering]="true"
+                  [filterSettings]='filterSettings'
+                  (rowSelecting)="onRowSelect($event)"
+        >
+          <e-columns *ngFor="let col of colunas ">
+            <e-column class="texto-tabela" field='{{col.field}}' headerText='{{col.header}}' textAlign='Right'
+                      width='120'></e-column>
+          </e-columns>
+        </ejs-grid>
+      </div>
+    </p-card>
 
+  </div>
+
+</div>
 

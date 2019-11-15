@@ -37,6 +37,7 @@
     "@mdi/font": "^4.5.95",
     "@syncfusion/ej2": "^17.3.27",
     "@syncfusion/ej2-angular-grids": "^17.3.27",
+    "@syncfusion/ej2-angular-navigations": "^17.3.27",
     "boostrap": "^2.0.0",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.9.0",

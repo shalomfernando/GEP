@@ -4,6 +4,9 @@ import {AtualizarCronograma, Cronograma, Projetos, SalvarCronograma, User} from 
 import {CronogramaService, ProjetoService, TarefaService, UserService} from '@app/_services';
 import {first} from 'rxjs/operators';
 import {StatusService} from '@app/_services/status.service';
+import {Dashboard} from "@app/_models/Dashboard";
+import {ProgressoHome} from "@app/_models/ProgressoHome";
+import {PageSettingsModel} from "@syncfusion/ej2-grids";
 
 
 @Component({
@@ -40,18 +43,18 @@ export class CronogramaComponent implements OnInit {
   //
   valorAsync: any;
 
-  colunas: any[] = [
-    {field: 'projeto', header: 'PROJETO'},
-    {field: 'descricao', header: 'DESCRICAO'},
-    {field: 'origem', header: 'ORIGEM'},
-    {field: 'lider', header: 'LIDER'},
-    {field: 'status', header: 'STATUS'},
-    {field: 'dt_INICIO_PREV', header: 'DATA INICIO PREVISTA'},
-    {field: 'dt_FIM_PREV', header: 'DATA FIM PREVISTA'},
-    {field: 'dias_PREV', header: 'DIAS PREVISTOS'},
-    {field: 'dt_INICIO', header: 'DATA INICIO'},
-    {field: 'dt_FIM', header: 'DATA FIM'},
-  ];
+
+  // novo grid
+  data: Dashboard[];
+  progresso: ProgressoHome;
+  // tslint:disable-next-line:ban-types
+  public datas: Object[];
+  // tslint:disable-next-line:ban-types
+  public filterSettings: Object;
+  public pageOptions: PageSettingsModel;
+  // fim
+
+  colunas: any[];
 
   constructor(private cronogramaService: CronogramaService,
               private projetoService: ProjetoService,
@@ -67,10 +70,22 @@ export class CronogramaComponent implements OnInit {
     this.cronogramaService.GET().subscribe(listaCronograma => {
       this.listaCronograma = listaCronograma;
     });
+    // this.filterSettings = {type: 'Menu'};
     this.userService.getAll().pipe(first()).subscribe(users => {
       this.loading = false;
       this.users = users;
     });
+
+    this.colunas = [{field: 'projeto', header: 'PROJETO'},
+      {field: 'descricao', header: 'DESCRICAO'},
+      {field: 'origem', header: 'ORIGEM'},
+      {field: 'lider', header: 'LIDER'},
+      {field: 'status', header: 'STATUS'},
+      {field: 'dt_INICIO_PREV', header: 'DATA INICIO PREVISTA'},
+      {field: 'dt_FIM_PREV', header: 'DATA FIM PREVISTA'},
+      {field: 'dias_PREV', header: 'DIAS PREVISTOS'},
+      {field: 'dt_INICIO', header: 'DATA INICIO'},
+      {field: 'dt_FIM', header: 'DATA FIM'}];
 
     this.selectedProjetos = null;
     this.selectUsuario = null;

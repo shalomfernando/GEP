@@ -1,9 +1,106 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark ">
-  <a class="navbar-brand" href="#">
-    GEP
-  </a>
+<!--<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark ">-->
+<!--  <a class="navbar-brand" href="#">-->
+<!--    GEP-->
+<!--  </a>-->
 
-  <button class="navbar-toggler" type="button">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-</nav>
+<!--  <button class="navbar-toggler" type="button">-->
+<!--    <span class="navbar-toggler-icon"></span>-->
+<!--  </button>-->
+<!--</nav>-->
+<style>
+  .e-content-animation{
+    margin-left: 0;
+  }
+</style>
+<div id='container'>
+  <!-- declaration of sidebar element -->
+  <div id="wrapper">
+    <!--Sidebar element declaration -->
+    <ejs-sidebar id="default-sidebar" #sidebar [width]='width' (created)="onCreated($event)" style="visibility: hidden">
+      <div class="sidebar-header header-cover" style="background-color:#0378d5">
+        <div class="image-container">
+          <div class="sidebar-image">
+          </div>
+        </div>
+        <div style="padding: 0 0 5px 0;">
+          <a class="sidebar-brand" href="#settings-dropdown">
+            john.doe@gmail.com
+          </a>
+          <span class="sf-icon-down icon"></span>
+        </div>
+      </div>
+
+      <!-- Sidebar navigation -->
+      <ul class="nav sidebar-nav">
+        <li>
+          <a routerLink="/projeto" href="#">
+            <i class="sf-icon-sidebar sf-icon-file"></i>
+            <span class="e-text"> Projeto</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/cronograma" href="#">
+            <i class="sf-icon-sidebar sf-icon-starred"></i>
+            <span class="e-text"> Cronograma</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/tarefa" href="#">
+            <i class="sf-icon-sidebar sf-icon-recent"></i>
+            <span class="e-text">Tarefa</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/dashboard" href="#">
+            <i class="sf-icon-sidebar sf-icon-important"></i>
+            <span class="e-text">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="sf-icon-sidebar sf-icon-offline"></i>
+            <span class="e-text"> Sent</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="sf-icon-sidebar sf-icon-backup"></i>
+            <span class="e-text"> Draft</span>
+          </a>
+        </li>
+      </ul>
+    </ejs-sidebar>
+    <!-- main content declaration -->
+    <div>
+      <div class="content">
+        <div id="left">
+          <span id="hamburger" class="e-icons menu default" (click)="openClick()"></span>
+        </div>
+        <div id="center">
+          <span>Home</span>
+        </div>
+        <div id="right">
+          <span class="sf-icon-search"></span>
+        </div>
+      </div>
+      <div>
+        <div class="Sh">
+          <ul class=" e-ul ">
+<!--            <li class="e-list-group-item e-level-1" role="group" data-uid="group-list-item-Today"-->
+<!--                aria-level="1">-->
+
+<!--            </li>-->
+            shalom
+          </ul>
+<!--          <router-outlet></router-outlet>-->
+        </div>
+      </div>
+
+
+      <div>
+              <router-outlet></router-outlet>
+      </div>
+    </div>
+    <!--end of main content declaration -->
+  </div>
+</div>

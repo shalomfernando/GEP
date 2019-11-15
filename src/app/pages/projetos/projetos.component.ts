@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ConfirmationService, Message, MessageService} from 'primeng/api';
 import {PostProjeto, Projetos, PushProjeto} from '@app/_models';
 import {ProjetoService} from '@app/_services';
+import {Dashboard} from '@app/_models/Dashboard';
+import {ProgressoHome} from '@app/_models/ProgressoHome';
+import {PageSettingsModel} from '@syncfusion/ej2-grids';
 
 
 @Component({
@@ -27,13 +30,22 @@ export class ProjetosComponent implements OnInit {
   msgs: Message[] = [];
   valorAsync: any;
 
+  // novo grid
+  data: Dashboard[];
+  progresso: ProgressoHome;
+  // tslint:disable-next-line:ban-types
+  public datas: Object[];
+  // tslint:disable-next-line:ban-types
+  public filterSettings: Object;
+  public pageOptions: PageSettingsModel;
+  // fim
 
   constructor(private projetoService: ProjetoService, private messageService: MessageService, private confirma: ConfirmationService) {
   }
 
   ngOnInit() {
     this.projetoService.ListarProjeto().subscribe(listarprojetos => this.listaProjetos = listarprojetos);
-
+    this.filterSettings = {type: 'Menu'};
     this.colunas = [
       {field: 'nome', header: 'Nome Projeto'},
       {field: 'sigla', header: 'Sigla'},
@@ -50,7 +62,7 @@ export class ProjetosComponent implements OnInit {
   }
 
   save() {
-    let proje = [...this.listaProjetos];
+    const proje = [...this.listaProjetos];
 
     console.log(this.newProjeto);
 
@@ -58,11 +70,11 @@ export class ProjetosComponent implements OnInit {
       proje.push(this.editProjetos);
 
       console.log(this.editProjetos);
-      let projeto = new PostProjeto(this.editProjetos);
+      const projeto = new PostProjeto(this.editProjetos);
       this.projetoService.salvarProjeto(projeto).subscribe();
     } else {
       proje[this.listaProjetos.indexOf(this.projetos)] = this.editProjetos;
-      let projeto = new PushProjeto(this.editProjetos);
+      const projeto = new PushProjeto(this.editProjetos);
       this.projetoService.atualizaProjeto(projeto, this.editProjetos.id).subscribe();
     }
 
@@ -80,29 +92,36 @@ export class ProjetosComponent implements OnInit {
 
   delete() {
 
-    let index = this.listaProjetos.indexOf(this.projetos);
+    const index = this.listaProjetos.indexOf(this.projetos);
     this.listaProjetos = this.listaProjetos.filter((val, i) => i != index);
     this.editProjetos = null;
     this.displayDialog = false;
-
     this.projetoService.deletarProjeto(this.projetos.id);
 
+    // atualizar a lista
+    this.valorAsync = new Promise((resolver, reject) => {
+      setTimeout(() => resolver(this.projetoService.ListarProjeto().subscribe(listaCronograma => {
+        this.listaProjetos = listaCronograma;
+      })), 1000);
+    });
   }
 
 
   onRowSelect(event) {
     this.newProjeto = false;
     this.editProjetos = this.cloneProjeto(event.data);
+    this.projetos = this.editProjetos;
     this.displayDialog = true;
+    console.log(this.editProjetos);
   }
 
   //// Pega a linha clicada e inputa no editProjeto
   cloneProjeto(c: Projetos): Projetos {
-    let proje = {};
-    for (let prop in c) {
+    const proje = {};
+    for (const prop in c) {
       proje[prop] = c[prop];
     }
-    return <Projetos>proje;
+    return proje as Projetos;
   }
 
 
