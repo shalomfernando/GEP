@@ -5,6 +5,9 @@ import {CronogramaService, ProjetoService, TarefaService, UserService} from '@ap
 import {first} from 'rxjs/operators';
 import {ApontamentoTarefa} from "@app/_models/tarefa/apontamento-tarefa";
 import {ApontamentoService} from "@app/_services/apontamento.service";
+import {Dashboard} from "@app/_models/Dashboard";
+import {ProgressoHome} from "@app/_models/ProgressoHome";
+import {PageSettingsModel} from "@syncfusion/ej2-grids";
 
 @Component({
   selector: 'app-tarefa',
@@ -37,6 +40,15 @@ export class TarefaComponent implements OnInit {
   selectStatus: any;
   valorAsync: any;
 
+  // novo grid
+  data: Dashboard[];
+  progresso: ProgressoHome;
+  // tslint:disable-next-line:ban-types
+  public datas: Object[];
+  // tslint:disable-next-line:ban-types
+  public filterSettings: Object;
+  public pageOptions: PageSettingsModel;
+  // fim
 
   constructor(private tarefaService: TarefaService,
               private cronogramaService: CronogramaService,
@@ -59,7 +71,7 @@ export class TarefaComponent implements OnInit {
     this.tarefaService.listarStatus().subscribe(status => this.listaStatus = status);
     this.cronogramaService.GET().subscribe(cronograma => this.listaCronograma = cronograma);
     this.projetoService.ListarProjeto().subscribe(projeto => this.listaProjeto = projeto);
-
+    this.filterSettings = {type: 'Menu'};
     this.colunas = [
       {field: 'descricao', header: 'Descricao'},
       {field: 'dias', header: 'Dias'},

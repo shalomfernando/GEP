@@ -1,6 +1,6 @@
-<h1>
-  Tarefa
-</h1>
+<!--<h1>-->
+<!--  Tarefa-->
+<!--</h1>-->
 
 
 <p-confirmDialog #cd header="Confirmação" icon="pi pi-info-circle">
@@ -12,52 +12,52 @@
   </p-footer>
 </p-confirmDialog>
 <p-toast [style]="{marginTop: '50px'}"></p-toast>
-<p-table #grdProjeto
-         [columns]="colunas"
-         [value]="listaTarefas"
-         [paginator]="true"
-         [rows]="10"
-         [resizableColumns]="true"
-         [reorderableColumns]="true"
-         selectionMode="single"
-         [(selection)]="tarefa"
-         [scrollable]="true" scrollHeight="400px"
-         (onRowSelect)="onRowSelect($event)">
-  <ng-template pTemplate="header" let-columns>
-    <tr>
-      <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn
-          style="width:180px; font-size: 0.8rem;text-transform: uppercase;">
-        {{col.header}}
-        <p-sortIcon [field]="col.field"></p-sortIcon>
-      </th>
-    </tr>
-    <tr>
-      <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">
-        <input pInputText type="text"
-               (input)="grdProjeto.filter($event.target.value, col.field, col.filterMatchMode)"
-               [value]="grdProjeto.filters[col.field]?.value">
-      </th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-rowData let-columns="columns">
-    <tr [pSelectableRow]="rowData">
-      <td>
+<!--<p-table #grdProjeto-->
+<!--         [columns]="colunas"-->
+<!--         [value]="listaTarefas"-->
+<!--         [paginator]="true"-->
+<!--         [rows]="10"-->
+<!--         [resizableColumns]="true"-->
+<!--         [reorderableColumns]="true"-->
+<!--         selectionMode="single"-->
+<!--         [(selection)]="tarefa"-->
+<!--         [scrollable]="true" scrollHeight="400px"-->
+<!--         (onRowSelect)="onRowSelect($event)">-->
+<!--  <ng-template pTemplate="header" let-columns>-->
+<!--    <tr>-->
+<!--      <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn-->
+<!--          style="width:180px; font-size: 0.8rem;text-transform: uppercase;">-->
+<!--        {{col.header}}-->
+<!--        <p-sortIcon [field]="col.field"></p-sortIcon>-->
+<!--      </th>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">-->
+<!--        <input pInputText type="text"-->
+<!--               (input)="grdProjeto.filter($event.target.value, col.field, col.filterMatchMode)"-->
+<!--               [value]="grdProjeto.filters[col.field]?.value">-->
+<!--      </th>-->
+<!--    </tr>-->
+<!--  </ng-template>-->
+<!--  <ng-template pTemplate="body" let-rowData let-columns="columns">-->
+<!--    <tr [pSelectableRow]="rowData">-->
+<!--      <td>-->
 
-        <!--        <button pButton type="button" icon="pi pi-times" class="ui-button-danger"></button>-->
-      </td>
-      <td *ngFor="let col of columns" style="width:180px; font-size: 0.8rem;text-transform: uppercase;">
-        {{rowData[col.field]}}
-      </td>
-      <td>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="summary" let-rowData>
-    <div style="text-align:left">
-      <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
-    </div>
-  </ng-template>
-</p-table>
+<!--        &lt;!&ndash;        <button pButton type="button" icon="pi pi-times" class="ui-button-danger"></button>&ndash;&gt;-->
+<!--      </td>-->
+<!--      <td *ngFor="let col of columns" style="width:180px; font-size: 0.8rem;text-transform: uppercase;">-->
+<!--        {{rowData[col.field]}}-->
+<!--      </td>-->
+<!--      <td>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--  </ng-template>-->
+<!--  <ng-template pTemplate="summary" let-rowData>-->
+<!--    <div style="text-align:left">-->
+<!--      <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>-->
+<!--    </div>-->
+<!--  </ng-template>-->
+<!--</p-table>-->
 
 <p-dialog header="Cronograma detalhes" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
           [style]="{width: '700px'}">
@@ -160,5 +160,33 @@
     </div>
   </p-footer>
 </p-dialog>
+
+<div class="p-grid">
+  <div class="p-col">
+    <p-card header="Tarefas">
+      <div style="text-align:right">
+        <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
+      </div>
+      <div>
+        <ejs-grid [dataSource]="listaTarefas"
+                  [allowPaging]='true'
+                  [pageSettings]="pageOptions"
+                  [allowSorting]="true"
+                  [allowFiltering]="true"
+                  [filterSettings]='filterSettings'
+                  (rowSelecting)="onRowSelect($event)"
+        >
+          <e-columns>
+            <div *ngFor=" let col of colunas">
+              <e-column field="{{col.field}}"headerText="{{col.header}}" width="120"></e-column>
+            </div>
+          </e-columns>
+        </ejs-grid>
+      </div>
+    </p-card>
+
+  </div>
+
+</div>
 
 
