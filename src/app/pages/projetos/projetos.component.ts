@@ -38,6 +38,7 @@ export class ProjetosComponent implements OnInit {
   // tslint:disable-next-line:ban-types
   public filterSettings: Object;
   public pageOptions: PageSettingsModel;
+
   // fim
 
   constructor(private projetoService: ProjetoService, private messageService: MessageService, private confirma: ConfirmationService) {
@@ -46,12 +47,6 @@ export class ProjetosComponent implements OnInit {
   ngOnInit() {
     this.projetoService.ListarProjeto().subscribe(listarprojetos => this.listaProjetos = listarprojetos);
     this.filterSettings = {type: 'Menu'};
-    this.colunas = [
-      {field: 'nome', header: 'Nome Projeto'},
-      {field: 'sigla', header: 'Sigla'},
-      {field: 'descricao', header: 'Descrição'},
-      {field: 'objetivo', header: 'Objetivo'}
-    ];
   }
 
 

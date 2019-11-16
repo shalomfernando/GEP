@@ -1,11 +1,15 @@
-<ejs-chart id="chart-container"
+<ejs-chart id="chart-container" height='480'
            [primaryXAxis]='primaryXAxis'
            [primaryYAxis]='primaryYAxis'
            [title]='title'
            [chartArea]="chartArea"
            [tooltip]="tooltip">
   <e-series-collection>
-    <e-series [dataSource]='columnData' type='Column' xName='x' yName='y' width="2"
+    <e-series [dataSource]='columnData'
+              type='Column'
+              xName='x'
+              yName='y'
+              width="2"
               [dragSettings]="dragSettings"></e-series>
   </e-series-collection>
 </ejs-chart>

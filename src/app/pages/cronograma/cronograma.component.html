@@ -17,53 +17,6 @@
   </p-footer>
 </p-confirmDialog>
 <p-toast [style]="{marginTop: '50px'}"></p-toast>
-
-<!--{{valorAsync|async}}-->
-<!--<p-table #grdCronograma-->
-<!--         [columns]="colunas"-->
-<!--         [value]="listaCronograma"-->
-<!--         [paginator]="true"-->
-<!--         [rows]="10"-->
-<!--         [resizableColumns]="true"-->
-<!--         [reorderableColumns]="true"-->
-<!--         selectionMode="single"-->
-<!--         [(selection)]="cronograma"-->
-<!--         [scrollable]="true" scrollHeight="400px"-->
-<!--         (onRowSelect)="onRowSelect($event)">-->
-<!--  <ng-template pTemplate="header" let-columns>-->
-<!--    <tr>-->
-<!--      <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn-->
-<!--          style="width:200px; font-size: 0.8rem;text-transform: uppercase;">-->
-<!--        {{col.header}}-->
-<!--        <p-sortIcon [field]="col.field"></p-sortIcon>-->
-<!--      </th>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--      <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">-->
-<!--        <input pInputText type="text"-->
-<!--               (input)="grdCronograma.filter($event.target.value, col.field, col.filterMatchMode)"-->
-<!--               [value]="grdCronograma.filters[col.field]?.value">-->
-<!--      </th>-->
-<!--    </tr>-->
-<!--  </ng-template>-->
-<!--  <ng-template pTemplate="body" let-rowData let-columns="columns">-->
-<!--    <tr [pSelectableRow]="rowData">-->
-<!--      <td>-->
-
-<!--        <button pButton type="button" icon="pi pi-times" class="ui-button-danger"></button>-->
-<!--      </td>-->
-<!--      <td *ngFor="let col of columns" style="width:200px; font-size: 0.8rem;text-transform: uppercase;">-->
-<!--        {{rowData[col.field]}}-->
-<!--      </td>-->
-<!--    </tr>-->
-<!--  </ng-template>-->
-<!--  <ng-template pTemplate="summary" let-rowData>-->
-<!--    <div style="text-align:left">-->
-<!--      <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>-->
-<!--    </div>-->
-<!--  </ng-template>-->
-<!--</p-table>-->
-
 <p-dialog header="Cronograma detalhes" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
           [style]="{width: '500px'}">
 
@@ -78,19 +31,9 @@
                       placeholder="{{!newCronograma  ? editCronograma.projeto  : 'Selecione'}}" optionLabel="nome"
                       [showClear]="true">
           </p-dropdown>
-          <!--         <p>Selected City: {{selectedProjetos.nome == edi tCronograma.status ? selectedProjetos.nome : 'none'}}</p>-->
         </div>
 
       </div>
-      <!--      <div class="ui-g-12">-->
-      <!--        <div class="ui-g-4">-->
-      <!--          <label for="Status">Status</label>-->
-      <!--        </div>-->
-      <!--        <div class="ui-g-8">-->
-      <!--          <p-dropdown id="Status" [options]="listarStatus" [(ngModel)]="selectedStatus"-->
-      <!--                      placeholder="{{!newCronograma ? editCronograma.status :'Selecione um Status'}}" optionLabel="st_DESC" [showClear]="true" required></p-dropdown>-->
-      <!--        </div>-->
-      <!--      </div>-->
       <div class="ui-g-12">
         <div class="ui-g-4">
           <label for="lider">Lider</label>

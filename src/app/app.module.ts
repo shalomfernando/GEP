@@ -8,7 +8,6 @@ import {ChartModule, DataLabelService} from '@syncfusion/ej2-angular-charts';
 // import {fakeBackendProvider} from './_helpers';
 
 import {AppComponent} from './app.component';
-
 import {JwtInterceptor, ErrorInterceptor} from './_helpers';
 
 import {MatSliderModule} from '@angular/material/slider';
@@ -82,7 +81,8 @@ import {SidebarModule} from '@syncfusion/ej2-angular-navigations';
     MatSliderModule,
     MatProgressSpinnerModule,
     ChartModule,
-    GridModule, SidebarModule
+    GridModule,
+    SidebarModule
   ],
   declarations: [
     AppComponent,

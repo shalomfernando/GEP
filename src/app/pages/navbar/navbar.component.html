@@ -11,6 +11,14 @@
   .e-content-animation{
     margin-left: 0;
   }
+  #default-sidebar{
+    border-radius: 0;
+    border-style: none solid solid;
+    border-width: 1px;
+    border-color: #e0e0e0;
+  }
+
+
 </style>
 <div id='container'>
   <!-- declaration of sidebar element -->
@@ -23,8 +31,8 @@
           </div>
         </div>
         <div style="padding: 0 0 5px 0;">
-          <a class="sidebar-brand" href="#settings-dropdown">
-            john.doe@gmail.com
+          <a class="sidebar-brand">
+            {{user.nome}}
           </a>
           <span class="sf-icon-down icon"></span>
         </div>
@@ -33,29 +41,30 @@
       <!-- Sidebar navigation -->
       <ul class="nav sidebar-nav">
         <li>
-          <a routerLink="/projeto" href="#">
+          <a routerLink="/" href="#">
+            <i class="sf-icon-sidebar sf-icon-important"></i>
+            <span class="e-text">Home</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/projeto" >
             <i class="sf-icon-sidebar sf-icon-file"></i>
-            <span class="e-text"> Projeto</span>
+            <span class="e-text"> Projetos</span>
           </a>
         </li>
         <li>
           <a routerLink="/cronograma" href="#">
             <i class="sf-icon-sidebar sf-icon-starred"></i>
-            <span class="e-text"> Cronograma</span>
+            <span class="e-text"> Cronogramas</span>
           </a>
         </li>
         <li>
           <a routerLink="/tarefa" href="#">
             <i class="sf-icon-sidebar sf-icon-recent"></i>
-            <span class="e-text">Tarefa</span>
+            <span class="e-text">Tarefas</span>
           </a>
         </li>
-        <li>
-          <a routerLink="/" href="#">
-            <i class="sf-icon-sidebar sf-icon-important"></i>
-            <span class="e-text">Dashboard</span>
-          </a>
-        </li>
+
         <li>
           <a href="#">
             <i class="sf-icon-sidebar sf-icon-offline"></i>
@@ -75,12 +84,6 @@
       <div class="content">
         <div id="left">
           <span id="hamburger" class="e-icons menu default" (click)="openClick()"></span>
-        </div>
-        <div id="center" routerLink="/">
-          <span>Home</span>
-        </div>
-        <div id="right">
-<!--          <span class="sf-icon-search"></span>-->
         </div>
       </div>
       <div>

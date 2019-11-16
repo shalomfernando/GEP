@@ -1,6 +1,6 @@
 ﻿import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-
+import * as $ from 'jquery';
 import {AuthenticationService} from './_services';
 import {User} from './_models';
 

@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {SidebarComponent} from '@syncfusion/ej2-angular-navigations';
+import {User} from "@app/_models";
 
 @Component({
   selector: 'app-navbar',
@@ -12,9 +13,10 @@ export class NavbarComponent implements OnInit {
 
   @ViewChild('sidebar', {static: false})
   public sidebar: SidebarComponent;
-  public width = '290px';
-
+  public width = '20%';
+  public user: User;
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
   }
   public onCreated(args: any) {
     this.sidebar.element.style.visibility = '';

@@ -1,6 +1,11 @@
-<!--<h1>-->
-<!--  Projetos-->
-<!--</h1>-->
+<style>
+  .e-rowcell {
+    font-size: 11px;
+  }
+
+</style>
+
+
 <p-confirmDialog #cd header="Confirmação" icon="pi pi-info-circle">
   <p-footer>
     <button type="button" pButton icon="pi pi-times" class="ui-button-danger" label="Não"
@@ -103,30 +108,41 @@
     </div>
   </p-footer>
 </p-dialog>
-<div class="p-grid">
-  <div class="p-col">
-    <p-card header="Projetos">
-      <div style="text-align:right">
-        <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
-      </div>
-      <div>
-        <ejs-grid [dataSource]="listaProjetos"
-                  [allowPaging]='true'
-                  [pageSettings]="pageOptions"
-                  [allowSorting]="true"
-                  [allowFiltering]="true"
-                  [filterSettings]='filterSettings'
-                  (rowSelecting)="onRowSelect($event)"
-        >
-          <e-columns>
-            <div *ngFor=" let col of colunas">
-              <e-column field="{{col.field}}"headerText="{{col.header}}" width="120"></e-column>
+<p-card>
+  <div class="row">
+    <i class="pi pi-folder" style="font-size: 100px"></i>
+    <h2 style="padding: 30px;">Projetos</h2>
+  </div>
+  <div style="text-align:right">
+    <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
+  </div>
+  <div>
+    <ejs-grid [dataSource]="listaProjetos"
+              [allowPaging]='true'
+              [pageSettings]="pageOptions"
+              [allowSorting]="true"
+              [allowFiltering]="true"
+              [filterSettings]='filterSettings'
+
+    >
+      <!--      (rowSelecting)="onRowSelect($event)"-->
+      <e-columns>
+        <e-column field='id' headerText='ID' [visible]="false" width='50' textAlign='Left'></e-column>
+        <e-column field='nome' headerText='NOME' width='100'></e-column>
+        <e-column field='sigla' headerText='SIGLA' textAlign='Left' width='50'></e-column>
+        <e-column field='descricao' headerText='DESCRIÇÃO' width='170'></e-column>
+        <e-column field='objetivo' headerText='OBJETIVO' width='90'></e-column>
+        <e-column headerText="AÇÕES">
+          <ng-template e-template let-data>
+            <div>
+              <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
             </div>
-<!--            <e-column field="nome"headerText="Nome Projeto" width="120"></e-column>-->
-          </e-columns>
-        </ejs-grid>
-      </div>
-    </p-card>
+          </ng-template>
+        </e-column>
+      </e-columns>
+    </ejs-grid>
+  </div>
+</p-card>
 
   </div>
 
