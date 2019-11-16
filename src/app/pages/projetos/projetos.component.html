@@ -118,9 +118,11 @@
                   [filterSettings]='filterSettings'
                   (rowSelecting)="onRowSelect($event)"
         >
-          <e-columns *ngFor="let col of colunas ">
-            <e-column class="texto-tabela" field='{{col.field}}' headerText='{{col.header}}' textAlign='Right'
-                      width='120'></e-column>
+          <e-columns>
+            <div *ngFor=" let col of colunas">
+              <e-column field="{{col.field}}"headerText="{{col.header}}" width="120"></e-column>
+            </div>
+<!--            <e-column field="nome"headerText="Nome Projeto" width="120"></e-column>-->
           </e-columns>
         </ejs-grid>
       </div>

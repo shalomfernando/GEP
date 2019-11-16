@@ -75,7 +75,7 @@ export class CronogramaComponent implements OnInit {
       this.loading = false;
       this.users = users;
     });
-
+    this.filterSettings = {type: 'Menu'};
     this.colunas = [{field: 'projeto', header: 'PROJETO'},
       {field: 'descricao', header: 'DESCRICAO'},
       {field: 'origem', header: 'ORIGEM'},
@@ -83,8 +83,8 @@ export class CronogramaComponent implements OnInit {
       {field: 'status', header: 'STATUS'},
       {field: 'dt_INICIO_PREV', header: 'DATA INICIO PREVISTA'},
       {field: 'dt_FIM_PREV', header: 'DATA FIM PREVISTA'},
-      {field: 'dias_PREV', header: 'DIAS PREVISTOS'},
-      {field: 'dt_INICIO', header: 'DATA INICIO'},
+      // {field: 'dias_PREV', header: 'DIAS PREVISTOS'},
+      // {field: 'dt_INICIO', header: 'DATA INICIO'},
       {field: 'dt_FIM', header: 'DATA FIM'}];
 
     this.selectedProjetos = null;
