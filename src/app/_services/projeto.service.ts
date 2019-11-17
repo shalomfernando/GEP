@@ -24,7 +24,6 @@ export class ProjetoService {
   }
 
   atualizaProjeto(projeto: PushProjeto, id: number) {
-    console.log(id);
     return this.http.put<PostProjeto>(`${environment.apiUrl}/Projeto/${id}`, projeto).pipe(take(1));
   }
 

@@ -1,6 +1,6 @@
 ﻿import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {PageService, SortService, FilterService, GroupService} from '@syncfusion/ej2-angular-grids';
 import {ChartModule, DataLabelService} from '@syncfusion/ej2-angular-charts';
@@ -36,7 +36,16 @@ import {CalendarioComponent} from '@app/pages/calendario/calendario.component';
 import {MenuLateralComponent} from '@app/pages/menu-lateral/menu-lateral.component';
 import {FullCalendarModule} from 'primeng/fullcalendar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {GridModule} from '@syncfusion/ej2-angular-grids';
+import {
+  GridModule,
+  PagerModule,
+  EditService,
+  ToolbarService,
+  CommandColumnService
+} from '@syncfusion/ej2-angular-grids';
+import {NumericTextBoxAllModule} from '@syncfusion/ej2-angular-inputs';
+import {DatePickerAllModule} from '@syncfusion/ej2-angular-calendars';
+import {DropDownListAllModule} from '@syncfusion/ej2-angular-dropdowns';
 import {
   LineSeriesService,
   ColumnSeriesService,
@@ -82,7 +91,13 @@ import {SidebarModule} from '@syncfusion/ej2-angular-navigations';
     MatProgressSpinnerModule,
     ChartModule,
     GridModule,
-    SidebarModule
+    SidebarModule,
+    PagerModule,
+    NumericTextBoxAllModule,
+    DatePickerAllModule,
+    DropDownListAllModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [
     AppComponent,
@@ -107,7 +122,8 @@ import {SidebarModule} from '@syncfusion/ej2-angular-navigations';
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     PageService, SortService, FilterService, GroupService,
     CategoryService, LegendService, TooltipService, DataLabelService, LineSeriesService,
-    ColumnSeriesService, MessageService, DataEditingService
+    ColumnSeriesService, MessageService, DataEditingService,
+    EditService, ToolbarService, CommandColumnService
   ],
   bootstrap: [AppComponent]
 })

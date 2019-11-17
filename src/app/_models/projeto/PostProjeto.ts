@@ -13,6 +13,6 @@ export class PostProjeto {
     this.nome = projeto.nome;
     this.descricao = projeto.descricao;
     this.objetivo = projeto.objetivo;
-    this.idUser = 1;
+    this.idUser = JSON.parse(localStorage.getItem('currentUser')).id;
   }
 }

@@ -4,4 +4,5 @@ export interface Projetos {
   descricao: string;
   objetivo: string;
   id: number;
+  idUser: number;
 }

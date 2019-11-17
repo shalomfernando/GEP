@@ -33,6 +33,13 @@ L10n.load({
       'ClearFilter':'Filtro limpo',
       'ClearButton':'Limpar',
       'FilterButton':'filtrar',
+      'AddFormTitle':'Novo registro',
+      'SaveButton':'Salvar',
+      'Cancel':'Cancelar',
+      'CancelButton': 'Cancelar',
+      'EditFormTitle':'Editar ',
+      'close': 'Fechar',
+      'ConfirmDelete':'Tem certeza de que deseja excluir o registro?'
 
     },
     'pager': {
