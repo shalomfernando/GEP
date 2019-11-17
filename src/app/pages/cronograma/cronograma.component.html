@@ -2,78 +2,12 @@
   .ui-inputtext{
     text-transform: uppercase;
   }
+  .e-rowcell {
+    font-size: 12px;
+  }
 </style>
 
-
-<!--<h1>-->
-<!--  Cronograma-->
-<!--</h1>-->
-<p-confirmDialog #cd header="Confirmação" icon="pi pi-info-circle">
-  <p-footer>
-    <button type="button" pButton icon="pi pi-times" class="ui-button-danger" label="Não"
-            (click)="cd.reject()"></button>
-    <button type="button" pButton icon="pi pi-check" class="ui-button-success" label="Sim"
-            (click)="cd.accept()"></button>
-  </p-footer>
-</p-confirmDialog>
 <p-toast [style]="{marginTop: '50px'}"></p-toast>
-<p-dialog header="Cronograma detalhes" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
-          [style]="{width: '500px'}">
-
-  <div class="ui-g ui-fluid" *ngIf="editCronograma">
-    <div class="ui-g-12">
-      <div class="ui-g-12">
-        <div class="ui-g-4">
-          <label for="projeto">Projeto</label>
-        </div>
-        <div class="ui-g-8">
-          <p-dropdown id="projeto" [options]="projeto" [(ngModel)]="selectedProjetos"
-                      placeholder="{{!newCronograma  ? editCronograma.projeto  : 'Selecione'}}" optionLabel="nome"
-                      [showClear]="true">
-          </p-dropdown>
-        </div>
-
-      </div>
-      <div class="ui-g-12">
-        <div class="ui-g-4">
-          <label for="lider">Lider</label>
-        </div>
-        <div class="ui-g-8">
-
-          <p-dropdown id="lider" [options]="users" [(ngModel)]="selectUsuario"
-                      placeholder="{{!newCronograma ? editCronograma.lider :'Selecione'}}" optionLabel="nome"
-                      [showClear]="true" required></p-dropdown>
-        </div>
-      </div>
-      <div class="ui-g-12">
-        <div class="ui-g-4">
-          <label for="descricao">Descricão</label>
-        </div>
-        <div class="ui-g-8">
-          <!--          <input pInputText id="descricao" [(ngModel)]="editCronograma.descricao" required/>-->
-          <textarea pInputText id="descricao" rows="5" cols="40"  [(ngModel)]="editCronograma.descricao"></textarea>
-        </div>
-      </div>
-      <div class="ui-g-12">
-        <div class="ui-g-4">
-          <label for="origrm" ngForm>Origem</label>
-        </div>
-        <div class="ui-g-8">
-          <input pInputText id="origrm" [(ngModel)]="editCronograma.origem" required/>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-  <p-footer>
-    <div class="ui-dialog-buttonpane ui-helper-clearfix">
-      <button type="button" pButton icon="pi pi-times" class="ui-button-danger" (click)="confirm()"
-              label="Delete"></button>
-      <button type="button" pButton icon="pi pi-check" (click)="save()" label="Salvar"></button>
-    </div>
-  </p-footer>
-</p-dialog>
 
 
 <div class="p-grid">
@@ -89,13 +23,78 @@
                   [allowSorting]="true"
                   [allowFiltering]="true"
                   [filterSettings]='filterSettings'
-                  (rowSelecting)="onRowSelect($event)"
+                  [editSettings]='editSettings'
+                  [toolbar]='toolbar'
+                  (actionBegin)='actionBegin($event)'
+                  (actionComplete)='actionComplete($event)'
         >
           <e-columns>
             <div *ngFor=" let col of colunas">
               <e-column field="{{col.field}}"headerText="{{col.header}}" width="120"></e-column>
             </div>
+            <e-column headerText='AÇÕES' width=100 [commands]='commands'></e-column>
           </e-columns>
+          <ng-template #editSettingsTemplate let-data>
+            <div ngForm #orderForm="ngForm">
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <div class="e-float-input e-control-wrapper"
+                       [ngClass]="{'e-error': id.invalid && (id.dirty || id.touched)}">
+                    <input [(ngModel)]="projeto.id" id="id" name="id" type="text"
+                           [attr.disabled]="true" #id="ngModel">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text e-label-top" for="id">ID</label>
+                  </div>
+                  <div id="IDError" *ngIf='id.invalid && (id.dirty || id.touched)'>
+                    <label class="e-error" id="id-info" style="display: block;">*ID é obrigatório.</label>
+                  </div>
+                  <div class="e-float-input e-control-wrapper"
+                       [ngClass]="{'e-error': Nome.invalid && (Nome.dirty || Nome.touched)}">
+                    <input [(ngModel)]="projeto.nome" required id="Nome" name="Nome" type="text"
+                           #Nome="ngModel">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text e-label-top" for="Nome">Nome</label>
+                  </div>
+                  <div id="NomeError" *ngIf='Nome.invalid && (Nome.dirty || Nome.touched)'>
+                    <label class="e-error" id="Nome-info" style="display: block;">*Nome é obrigatório.</label>
+                  </div>
+
+                  <div class="e-float-input e-control-wrapper"
+                       [ngClass]="{'e-error': sigla.invalid && (sigla.dirty || sigla.touched)}">
+                    <input [(ngModel)]="projeto.sigla" required id="sigla" name="sigla" type="text"
+                           #sigla="ngModel">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text e-label-top" for="sigla">Sigla</label>
+                  </div>
+                  <div id="SiglaError" *ngIf='sigla.invalid && (sigla.dirty || sigla.touched)'>
+                    <label class="e-error" id="Sigla-info" style="display: block;">*Sigla é obrigatório.</label>
+                  </div>
+
+                  <div class="e-float-input e-control-wrapper"
+                       [ngClass]="{'e-error': descricao.invalid && (descricao.dirty || descricao.touched)}">
+                    <input [(ngModel)]="projeto.descricao" required id="descricao" name="descricao" type="text"
+                           #descricao="ngModel">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text e-label-top" for="descricao">Descricao</label>
+                  </div>
+                  <div id="DescricaoError" *ngIf='descricao.invalid && (descricao.dirty || descricao.touched)'>
+                    <label class="e-error" id="descricao-info" style="display: block;">*Descricao é obrigatório.</label>
+                  </div>
+
+                  <div class="e-float-input e-control-wrapper"
+                       [ngClass]="{'e-error': objetivo.invalid && (objetivo.dirty || objetivo.touched)}">
+                    <input [(ngModel)]="projeto.objetivo" required id="objetivo" name="objetivo" type="text"
+                           #objetivo="ngModel">
+                    <span class="e-float-line"></span>
+                    <label class="e-float-text e-label-top" for="objetivo">Objetivo</label>
+                  </div>
+                  <div id="ObjetivoError" *ngIf='objetivo.invalid && (objetivo.dirty || objetivo.touched)'>
+                    <label class="e-error" id="objetivo-info" style="display: block;">*Objetivo é obrigatório.</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
         </ejs-grid>
       </div>
     </p-card>

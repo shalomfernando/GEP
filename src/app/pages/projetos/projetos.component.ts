@@ -9,8 +9,7 @@ import {
   EditSettingsModel,
   DialogEditEventArgs,
   SaveEventArgs,
-  ToolbarItems,
-  CommandClickEventArgs
+  ToolbarItems
 } from '@syncfusion/ej2-angular-grids';
 import {FormGroup} from "@angular/forms";
 

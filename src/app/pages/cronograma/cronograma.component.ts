@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {AtualizarCronograma, Cronograma, Projetos, SalvarCronograma, User} from '@app/_models';
 import {CronogramaService, ProjetoService, TarefaService, UserService} from '@app/_services';
@@ -6,7 +6,15 @@ import {first} from 'rxjs/operators';
 import {StatusService} from '@app/_services/status.service';
 import {Dashboard} from "@app/_models/Dashboard";
 import {ProgressoHome} from "@app/_models/ProgressoHome";
-import {PageSettingsModel} from "@syncfusion/ej2-grids";
+import {
+  PageSettingsModel,
+  CommandModel,
+  EditSettingsModel,
+  DialogEditEventArgs,
+  SaveEventArgs,
+  ToolbarItems
+} from "@syncfusion/ej2-grids";
+import {FormGroup} from "@angular/forms";
 
 
 @Component({
@@ -18,8 +26,6 @@ import {PageSettingsModel} from "@syncfusion/ej2-grids";
 
 
 export class CronogramaComponent implements OnInit {
-
-
   listaCronograma: Cronograma[] = [];
 
   displayDialog: boolean;
@@ -52,6 +58,15 @@ export class CronogramaComponent implements OnInit {
   // tslint:disable-next-line:ban-types
   public filterSettings: Object;
   public pageOptions: PageSettingsModel;
+
+
+  // @ts-ignore
+  @ViewChild('orderForm')
+  public orderForm: FormGroup;
+  public editSettings: EditSettingsModel;
+  public commands: CommandModel[];
+  public toolbar: ToolbarItems[];
+
   // fim
 
   colunas: any[];
@@ -67,15 +82,29 @@ export class CronogramaComponent implements OnInit {
   ngOnInit() {
     this.projetoService.ListarProjeto().subscribe(listaProjetos => this.projeto = listaProjetos);
     this.statusService.listarStatus('CRN').subscribe(listarStatus => this.listarStatus = listarStatus);
-    this.cronogramaService.GET().subscribe(listaCronograma => {
-      this.listaCronograma = listaCronograma;
-    });
+    this.buscaCronograma();
     // this.filterSettings = {type: 'Menu'};
     this.userService.getAll().pipe(first()).subscribe(users => {
       this.loading = false;
       this.users = users;
     });
     this.filterSettings = {type: 'Menu'};
+
+    this.editSettings = {
+      allowEditing: true,
+      allowAdding: true,
+      allowDeleting: true,
+      mode: 'Dialog',
+      showDeleteConfirmDialog: true
+    };
+    this.toolbar = ['Add'];
+    this.commands = [
+      {type: 'Edit', buttonOption: {cssClass: 'e-flat', iconCss: 'e-edit e-icons'}},
+      {type: 'Delete', buttonOption: {cssClass: 'e-flat', iconCss: 'e-delete e-icons'}},
+      {type: 'Save', buttonOption: {cssClass: 'e-flat', iconCss: 'e-update e-icons'}},
+      {type: 'Cancel', buttonOption: {cssClass: 'e-flat', iconCss: 'e-cancel-icon e-icons'}}];
+
+
     this.colunas = [{field: 'projeto', header: 'PROJETO'},
       {field: 'descricao', header: 'DESCRICAO'},
       {field: 'origem', header: 'ORIGEM'},
@@ -92,6 +121,77 @@ export class CronogramaComponent implements OnInit {
     this.selectedCronograma = null;
 
   }
+
+  actionBegin(args: SaveEventArgs): void {
+    if (args.requestType === 'beginEdit' || args.requestType === 'add') {
+      this.projeto = Object.assign(args.rowData);
+    }
+    if (args.requestType === 'save') {
+      if (this.orderForm.valid) {
+        if (this.editCronograma.id) {
+          const cronograma = new AtualizarCronograma(this.editCronograma, this.selectUsuario, this.selectedStatus);
+          this.cronogramaService.PUT(cronograma, this.editCronograma.id).subscribe(
+            () => {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Cronograma atualizado com sucesso.'
+              });
+            },
+            r => {
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Erro ao atualizar cronograma.'
+              });
+            }
+          );
+        } else {
+          const cronograma = new SalvarCronograma(this.editCronograma, this.selectedProjetos, this.selectUsuario);
+          this.cronogramaService.salvarCronograma(cronograma).subscribe(() => {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Cronograma cadastrado com sucesso.',
+                sticky: true
+              });
+            },
+            r => {
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Erro ao cadastrar cronograma.'
+              })
+            }
+          );
+        }
+        this.buscaCronograma();
+      } else {
+        args.cancel = true;
+      }
+    }
+    if (args.requestType === 'delete') {
+      console.log(args.data[0].id);
+      this.projetoService.deletarProjeto(args.data[0].id);
+    }
+  }
+
+  actionComplete(args: DialogEditEventArgs): void {
+    if ((args.requestType === 'beginEdit' || args.requestType === 'add')) {
+      args.form.ej2_instances[0].rules = {};
+      // Set initail Focus
+      if (args.requestType === 'beginEdit') {
+        (args.form.elements.namedItem('Nome') as HTMLInputElement).focus();
+      }
+    }
+
+  }
+
+
+
+buscaCronograma(){
+  this.cronogramaService.GET().subscribe(listaCronograma => {
+    this.listaCronograma = listaCronograma;
+  });
+}
+
+
 
   showDialogToAdd() {
     this.newCronograma = true;
