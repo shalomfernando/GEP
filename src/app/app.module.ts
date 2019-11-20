@@ -4,12 +4,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {PageService, SortService, FilterService, GroupService} from '@syncfusion/ej2-angular-grids';
 import {ChartModule, DataLabelService} from '@syncfusion/ej2-angular-charts';
-// used to create fake backend
-// import {fakeBackendProvider} from './_helpers';
-
 import {AppComponent} from './app.component';
 import {JwtInterceptor, ErrorInterceptor} from './_helpers';
-
 import {MatSliderModule} from '@angular/material/slider';
 import {
   AccordionModule,
@@ -45,7 +41,7 @@ import {
 } from '@syncfusion/ej2-angular-grids';
 import {NumericTextBoxAllModule} from '@syncfusion/ej2-angular-inputs';
 import {DatePickerAllModule} from '@syncfusion/ej2-angular-calendars';
-import {DropDownListAllModule} from '@syncfusion/ej2-angular-dropdowns';
+import {ComboBoxAllModule, DropDownListAllModule} from '@syncfusion/ej2-angular-dropdowns';
 import {
   LineSeriesService,
   ColumnSeriesService,
@@ -58,6 +54,7 @@ import {LegendService} from '@syncfusion/ej2-angular-charts';
 import {DashboardComponent} from './pages/dashboard/dashboard.component'
 import {MenuNovoComponent} from './pages/menu-novo/menu-novo.component';
 import {SidebarModule} from '@syncfusion/ej2-angular-navigations';
+import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 
 @NgModule({
   imports: [
@@ -97,13 +94,14 @@ import {SidebarModule} from '@syncfusion/ej2-angular-navigations';
     DatePickerAllModule,
     DropDownListAllModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ComboBoxAllModule,
+    DatePickerModule
   ],
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    AppComponent,
     StyleDefaultComponent,
     NavbarComponent,
     CalendarioComponent,
@@ -113,8 +111,7 @@ import {SidebarModule} from '@syncfusion/ej2-angular-navigations';
     ProjetosComponent,
     TarefaComponent,
     MenuLateralComponent,
-    MenuNovoComponent
-    ,
+    MenuNovoComponent,
     DashboardComponent
   ],
   providers: [

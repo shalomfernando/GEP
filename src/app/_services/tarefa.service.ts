@@ -18,8 +18,8 @@ export class TarefaService {
     return this.http.get(`${environment.apiUrl}/Tarefa/Calendario`);
   }
 
-  SalvarTarefa(tarefa: PostTarefa) {
-    return this.http.post<PostTarefa[]>(`${environment.apiUrl}/Tarefa`, tarefa).pipe(take(1));
+  SalvarTarefa(tarefa: Tarefa) {
+    return this.http.post<Tarefa[]>(`${environment.apiUrl}/Tarefa`, tarefa).pipe(take(1));
   }
 
   deletarCronograma(id: number) {
@@ -27,9 +27,9 @@ export class TarefaService {
 
   }
 
-  atualizarTarefa(tarefa: PushTarefa, id: number) {
+  atualizarTarefa(tarefa: Tarefa, id: number) {
     console.log(tarefa, 'id', id);
-    return this.http.put<PushTarefa[]>(`${environment.apiUrl}/Tarefa/${id}`, tarefa).pipe(take(1)).subscribe();
+    return this.http.put<Tarefa[]>(`${environment.apiUrl}/Tarefa/${id}`, tarefa).pipe(take(1))
   }
   listarStatus() {
     return this.http.get<any[]>(`${environment.apiUrl}/Status`);

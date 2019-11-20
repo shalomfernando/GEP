@@ -1,192 +1,156 @@
-<!--<h1>-->
-<!--  Tarefa-->
-<!--</h1>-->
+<style>
+  .e-rowcell {
+    font-size: 12px;
+  }
 
+</style>
 
-<p-confirmDialog #cd header="Confirmação" icon="pi pi-info-circle">
-  <p-footer>
-    <button type="button" pButton icon="pi pi-times" class="ui-button-danger" label="Não"
-            (click)="cd.reject()"></button>
-    <button type="button" pButton icon="pi pi-check" class="ui-button-success" label="Sim"
-            (click)="cd.accept()"></button>
-  </p-footer>
-</p-confirmDialog>
 <p-toast [style]="{marginTop: '50px'}"></p-toast>
-<!--<p-table #grdProjeto-->
-<!--         [columns]="colunas"-->
-<!--         [value]="listaTarefas"-->
-<!--         [paginator]="true"-->
-<!--         [rows]="10"-->
-<!--         [resizableColumns]="true"-->
-<!--         [reorderableColumns]="true"-->
-<!--         selectionMode="single"-->
-<!--         [(selection)]="tarefa"-->
-<!--         [scrollable]="true" scrollHeight="400px"-->
-<!--         (onRowSelect)="onRowSelect($event)">-->
-<!--  <ng-template pTemplate="header" let-columns>-->
-<!--    <tr>-->
-<!--      <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn-->
-<!--          style="width:180px; font-size: 0.8rem;text-transform: uppercase;">-->
-<!--        {{col.header}}-->
-<!--        <p-sortIcon [field]="col.field"></p-sortIcon>-->
-<!--      </th>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--      <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">-->
-<!--        <input pInputText type="text"-->
-<!--               (input)="grdProjeto.filter($event.target.value, col.field, col.filterMatchMode)"-->
-<!--               [value]="grdProjeto.filters[col.field]?.value">-->
-<!--      </th>-->
-<!--    </tr>-->
-<!--  </ng-template>-->
-<!--  <ng-template pTemplate="body" let-rowData let-columns="columns">-->
-<!--    <tr [pSelectableRow]="rowData">-->
-<!--      <td>-->
-
-<!--        &lt;!&ndash;        <button pButton type="button" icon="pi pi-times" class="ui-button-danger"></button>&ndash;&gt;-->
-<!--      </td>-->
-<!--      <td *ngFor="let col of columns" style="width:180px; font-size: 0.8rem;text-transform: uppercase;">-->
-<!--        {{rowData[col.field]}}-->
-<!--      </td>-->
-<!--      <td>-->
-<!--      </td>-->
-<!--    </tr>-->
-<!--  </ng-template>-->
-<!--  <ng-template pTemplate="summary" let-rowData>-->
-<!--    <div style="text-align:left">-->
-<!--      <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>-->
-<!--    </div>-->
-<!--  </ng-template>-->
-<!--</p-table>-->
-
-<p-dialog header="Cronograma detalhes" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
-          [style]="{width: '700px'}">
-
-  <div class="ui-g ui-fluid" *ngIf="editTarefas">
-    <div class="ui-g-6">
-      <div class="ui-g-12">
-        <div class="ui-g-4">
-          <label for="descricao">Descrição</label>
-        </div>
-        <div class="ui-g-8">
-          <input pInputText id="descricao" [(ngModel)]="editTarefas.descricao"/>
-        </div>
-      </div>
-      <div class="ui-g-12">
-        <div class="ui-g-4">
-          <label for="dias">Dias</label>
-        </div>
-        <div class="ui-g-8">
-          <input pInputText id="dias" [(ngModel)]="editTarefas.dias" disabled/>
-        </div>
-      </div>
-      <div class="ui-g-12">
-        <div class="ui-g-4">
-          <label for="data_inicio_previsto">Data Inicio Previsto</label>
-        </div>
-        <div class="ui-g-8">
-          <input pInputText id="data_inicio_previsto" type="date" [(ngModel)]="editTarefas.dt_INICIO_PREV "/>
-        </div>
-      </div>
-      <div class="ui-g-12">
-        <div class="ui-g-4">
-          <label for="dt_fim_previsto">Data Fim Previsto</label>
-        </div>
-        <div class="ui-g-8">
-          <input pInputText id="dt_fim_previsto" type="date" [(ngModel)]="editTarefas.dt_FIM_PREV"/>
-        </div>
-      </div>
-    </div>
-    <div class="ui-g-6">
-      <div class="ui-g-12">
-        <div class="ui-g-4">
-          <label for="responsavel">Responsavel</label>
-        </div>
-        <div class="ui-g-8">
-          <p-dropdown id="responsavel" [options]="users" [(ngModel)]="selectUsuario"
-                      placeholder="{{!newTarefa  ? editTarefas.responsavel  : 'Selecione'}}"
-                      optionLabel="nome" [showClear]="true"></p-dropdown>
-          <!--          <input pInputText id="responsavel" type="text" [(ngModel)]="editTarefas.responsavel"/>-->
-        </div>
-      </div>
-      <div *ngIf="!newTarefa">
-        <div class="ui-g-12">
-          <div class="ui-g-12">
-
-            Apontamento:
-            <!--        <button type="button" pButton icon="pi pi-check" (click)="obterApontamento(1)" class="ui-button-warning"></button>-->
-            <button type="button" pButton icon="pi pi-times" (click)="obterApontamento(1)"
-                    class="ui-button-danger"></button>
-            <button type="button" pButton icon="pi pi-caret-right" (click)="obterApontamento(2)"
-                    class="ui-button-warning"></button>
-            <button type="button" pButton icon="pi pi-check" (click)="obterApontamento(3)"
-                    class="ui-button-success"></button>
-          </div>
-        </div>
-
-      </div>
-      <div *ngIf="newTarefa">
-        <div class="ui-g-12">
-          <div class="ui-g-4">
-            <label for="id_projeto">Projeto</label>
-          </div>
-          <div class="ui-g-8">
-            <p-dropdown id="id_projeto" [options]="listaProjeto" [(ngModel)]="selectProjeto"
-                        placeholder="{{ !newTarefa  ? editTarefas.status  : 'Selecione'}}"
-                        optionLabel="nome" [showClear]="true"></p-dropdown>
-            <!--          <input pInputText id="id_projeto" type="text" [(ngModel)]="editTarefas.status"/>-->
-          </div>
-        </div>
-
-        <div class="ui-g-12">
-          <div class="ui-g-4">
-            <label for="id_cronograma">Cronograma</label>
-          </div>
-          <div class="ui-g-8">
-            <p-dropdown id="id_cronograma" [options]="listaCronograma" [(ngModel)]="selectCronograma"
-                        placeholder="{{ !newTarefa  ? editTarefas.status  : 'Selecione'}}"
-                        optionLabel="nome" [showClear]="true"></p-dropdown>
-            <!--          <input pInputText id="id_cronograma" type="text" [(ngModel)]="editTarefas.status"/>-->
-          </div>
-        </div>
-      </div>
-    </div>
+<p-card>
+  <div class="row">
+    <i class="pi pi-folder" style="font-size: 100px"></i>
+    <h2 style="padding: 30px;">Tarefas</h2>
   </div>
-  <p-footer>
-    <div class="ui-dialog-buttonpane ui-helper-clearfix">
-      <button type="button" pButton icon="pi pi-times" class="ui-button-danger" (click)="confirm()"
-              label="Delete"></button>
-      <button type="button" pButton icon="pi pi-check" (click)="save()" label="Salvar"></button>
-    </div>
-  </p-footer>
-</p-dialog>
+  <div>
+    <ejs-grid [dataSource]="listaTarefas"
+              [allowPaging]='true'
+              [pageSettings]="pageOptions"
+              [allowSorting]="true"
+              [allowFiltering]="true"
+              [filterSettings]='filterSettings'
+              [editSettings]='editSettings'
+              [toolbar]='toolbar'
+              (actionBegin)='actionBegin($event)'
+              (actionComplete)='actionComplete($event)'
+    >
+      <!--format='d/M/y' -->
+      <e-columns>
+        <e-column field="id" headerText="ID" isPrimaryKey='true' [visible]="false" width="120"></e-column>
+        <e-column field="descricao" headerText="Descricao" width="120"></e-column>
+        <e-column field="dias" headerText="Dias" width="120"></e-column>
+        <e-column field="dt_INICIO" headerText="Data Inicio" type='date' format='dd/MM/yyyy' width="120"></e-column>
+        <e-column field="dt_FIM" headerText="Data Fim" type='date' format='dd/MM/yyyy' width="120"></e-column>
+        <e-column field="status" headerText="Status" width="120"></e-column>
+        <e-column field='responsavel' headerText='Responsavel' editType='dropdownedit' width=150></e-column>
+        <e-column headerText='AÇÕES' width=100 [commands]='commands'></e-column>
 
-<div class="p-grid">
-  <div class="p-col">
-    <p-card header="Tarefas">
-      <div style="text-align:right">
-        <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
-      </div>
-      <div>
-        <ejs-grid [dataSource]="listaTarefas"
-                  [allowPaging]='true'
-                  [pageSettings]="pageOptions"
-                  [allowSorting]="true"
-                  [allowFiltering]="true"
-                  [filterSettings]='filterSettings'
-                  (rowSelecting)="onRowSelect($event)"
-        >
-          <e-columns>
-            <div *ngFor=" let col of colunas">
-              <e-column field="{{col.field}}"headerText="{{col.header}}" width="120"></e-column>
+        <ng-template #editSettingsTemplate let-data>
+          <div ngForm #orderForm="ngForm">
+            <div class="e-float-input e-control-wrapper"
+                 [ngClass]="{'e-error': id.invalid && (id.dirty || id.touched)}">
+              <input [(ngModel)]="tarefa.id"
+                     id="id"
+                     name="id"
+                     type="text"
+                     [attr.disabled]="true"
+                     #id="ngModel">
+              <span class="e-float-line"></span>
+              <label class="e-float-text e-label-top" for="id">ID</label>
             </div>
-          </e-columns>
-        </ejs-grid>
-      </div>
-    </p-card>
+            <div id="IDError" *ngIf='id.invalid && (id.dirty || id.touched)'>
+              <label class="e-error" id="id-info" style="display: block;">*ID é obrigatório.</label>
+            </div>
 
+
+            <div class="e-float-input e-control-wrapper"
+                 [ngClass]="{'e-error': descricao.invalid && (descricao.dirty || descricao.touched)}">
+              <input [(ngModel)]="tarefa.descricao"
+                     id="descricao"
+                     name="descricao"
+                     type="text"
+                     #descricao="ngModel">
+              <span class="e-float-line"></span>
+              <label class="e-float-text e-label-top" for="descricao">Descrição</label>
+            </div>
+            <div id="descricaoError" *ngIf='descricao.invalid && (descricao.dirty || descricao.touched)'>
+              <label class="e-error" id="descricao-info" style="display: block;">*Descricao é obrigatório.</label>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <ejs-dropdownlist id="responsavel"
+                                  name="responsavel"
+                                  [(ngModel)]="tarefa.id_responsavel"
+                                  [dataSource]='users'
+                                  [fields]="{text: 'nome', value: 'id' }"
+                                  placeholder="Nome responsavel"
+                                  popupHeight='300px'
+                                  floatLabelType='Always'></ejs-dropdownlist>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <ejs-datepicker id="DataInicio"
+                                name="DataInicio"
+                                required
+                                [(ngModel)]="tarefa.dt_INICIO_PREV"
+                                format="dd/MM/yyyy"
+                                placeholder="Data Inicio"
+                                floatLabelType='Always'
+                >
+                </ejs-datepicker>
+              </div>
+              <div class="form-group col-md-6">
+                <ejs-datepicker id="DataFim"
+                                name="DataFim"
+                                required
+                                [(ngModel)]="tarefa.dt_FIM_PREV"
+                                format="dd/MM/yyyy"
+                                placeholder="Data Fim"
+                                floatLabelType='Always'>
+                </ejs-datepicker>
+              </div>
+            </div>
+            <div class="form-row" *ngIf="!addNewProjeto">
+              <div class="form-group col-md-12">
+                <ejs-dropdownlist
+                  id="id_status"
+                  name="id_status"
+                  [(ngModel)]="tarefa.id_status"
+                  [dataSource]='listaStatus'
+                  [fields]="{text: 'st_DESC', value: 'st_ID'}"
+                  placeholder="Status"
+                  popupHeight='300px'
+                  floatLabelType='Always'></ejs-dropdownlist>
+              </div>
+            </div>
+            <div class="form-row" *ngIf="addNewProjeto">
+
+              <div class="form-group col-md-6">
+                <div id="wrapper">
+                  <ejs-combobox #projetosCmb
+                                id="cmbProjeto"
+                                name="id_projeto"
+                                [(ngModel)]="tarefa.id_projeto"
+                                [dataSource]="listaProjeto"
+                                [fields]="{text: 'nome', value: 'id' }"
+                                (change)="mudancaProjeto()"
+                                floatLabelType='Always'
+                                placeholder="Selecione um Projeto"></ejs-combobox>
+
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="padding-top">
+                  <ejs-combobox #cronogramaCmb
+                                id="cronogramaCmb"
+                                [(ngModel)]="tarefa.id_cronograma"
+                                [dataSource]="listaCronograma"
+                                [ngModelOptions]="{standalone: true}"
+                                [fields]="{text: 'nome', value: 'id' }"
+                                placeholder="Selecione um Cronograma"
+                                floatLabelType='Always'
+                                [enabled]="false"></ejs-combobox>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </ng-template>
+      </e-columns>
+    </ejs-grid>
   </div>
-
-</div>
+</p-card>
 
 

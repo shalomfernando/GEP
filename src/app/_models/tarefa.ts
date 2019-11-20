@@ -1,3 +1,5 @@
+import construct = Reflect.construct;
+
 export class Tarefa {
   id_responsavel: number;
   id_status: number;
@@ -6,11 +8,12 @@ export class Tarefa {
   descricao: string;
   dias: number;
   dias_PREV: number;
-  dt_FIM: any;
-  dt_FIM_PREV: any;
-  dt_INICIO: any;
-  dt_INICIO_PREV: any;
+  dt_FIM: Date;
+  dt_FIM_PREV: Date;
+  dt_INICIO: Date;
+  dt_INICIO_PREV: Date;
   id: number;
   responsavel: string;
   status: string;
+  idUser: bigint;
 }
