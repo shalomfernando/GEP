@@ -1,32 +1,71 @@
+<!-- <div id="content" style="width: 100%">-->
+<!--  <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--    <div class="container-fluid">-->
+
+<!--      <button  type="button" pButton icon="pi pi-bars" (click)="toggleClass()"  id="sidebarCollapse" class="btn btn-info">-->
+<!--        <i class="fas fa-align-left"></i>-->
+<!--      </button>-->
+
+<!--    </div>-->
+<!--  </nav>-->
+<!--</div>-->
 <div class="wrapper">
   <!-- Sidebar -->
   <nav id="sidebar" [class.active]="classApplied">
-    <div class="sidebar-header">
-      <h3>Gestão de projetos</h3>
+    <div class="sidebar-header header-cover" style="background-color:#0378d5">
+      <div class="image-container">
+        <div class="sidebar-image">
+        </div>
+      </div>
+      <div style="padding: 0 0 5px 0;">
+        <a class="sidebar-brand">
+          {{user.nome}}
+        </a>
+        <span class="sf-icon-down icon"></span>
+      </div>
     </div>
 
     <ul class="list-unstyled components">
 
       <li>
-        <a href="#">Projeto</a>
+        <a routerLink="/" href="#">
+<!--          <i class="sf-icon-sidebar sf-icon-important"></i>-->
+          <i class="pi pi-home " style="font-size: 1em"></i>
+          <span class="e-text">Home</span>
+        </a>
       </li>
       <li>
-        <a href="#">Cronograma</a>
+        <a routerLink="/projeto" >
+          <i class="pi pi-calendar-plus " style="font-size: 1em"></i>
+          <span class="e-text"> Projetos</span>
+        </a>
       </li>
       <li>
-        <a href="#">Tarefas</a>
+        <a routerLink="/cronograma" href="#">
+          <i class="pi pi-list " style="font-size: 1em"></i>
+          <!--          <i class="sf-icon-sidebar sf-icon-starred"></i>-->
+          <span class="e-text"> Cronogramas</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/tarefa" href="#">
+          <i class="pi pi-users " style="font-size: 1em"></i>
+          <span class="e-text">Tarefas</span>
+        </a>
       </li>
     </ul>
+
   </nav>
 </div>
-<div id="content">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
+<!--<div id="content">-->
+<!--  <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--    <div class="container-fluid">-->
 
-      <button  type="button" pButton icon="pi pi-bars" (click)="toggleClass()"  id="sidebarCollapse" class="btn btn-info">
-        <i class="fas fa-align-left"></i>
-      </button>
+<!--      <button  type="button" pButton icon="pi pi-bars" (click)="toggleClass()"  id="sidebarCollapse" class="btn btn-info">-->
+<!--        <i class="fas fa-align-left"></i>-->
+<!--      </button>-->
 
-    </div>
-  </nav>
-</div>
+<!--    </div>-->
+<!--  </nav>-->
+<!--</div>-->
+

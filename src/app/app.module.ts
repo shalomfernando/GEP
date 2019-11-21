@@ -55,6 +55,7 @@ import {DashboardComponent} from './pages/dashboard/dashboard.component'
 import {MenuNovoComponent} from './pages/menu-novo/menu-novo.component';
 import {SidebarModule} from '@syncfusion/ej2-angular-navigations';
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
+import {CadastroUsuarioComponent} from "@app/pages/cadastro-usuario/cadastro-usuario.component";
 
 @NgModule({
   imports: [
@@ -102,6 +103,7 @@ import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
     AppComponent,
     HomeComponent,
     LoginComponent,
+    AppComponent,
     StyleDefaultComponent,
     NavbarComponent,
     CalendarioComponent,
@@ -112,6 +114,7 @@ import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
     TarefaComponent,
     MenuLateralComponent,
     MenuNovoComponent,
+    CadastroUsuarioComponent,
     DashboardComponent
   ],
   providers: [

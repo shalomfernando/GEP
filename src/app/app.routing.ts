@@ -8,6 +8,7 @@ import {ProjetosComponent} from '@app/pages/projetos';
 import {TarefaComponent} from '@app/pages/tarefa';
 import {CalendarioComponent} from '@app/pages/calendario';
 import {LoginComponent} from '@app/pages/login';
+import {CadastroUsuarioComponent} from "@app/pages/cadastro-usuario/cadastro-usuario.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'calendario', component: CalendarioComponent, canActivate: [AuthGuard] },
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   {path: 'Dashboard', component: HomeComponent, canActivate: [AuthGuard] },
+  {path: 'cadastro', component: CadastroUsuarioComponent, canActivate: [AuthGuard] },
   // otherwise redirect to home
   // {path: '**', redirectTo: ''}
 ];

@@ -4,8 +4,8 @@ import {AtualizarCronograma, Cronograma, Projetos, SalvarCronograma, User} from 
 import {CronogramaService, ProjetoService, TarefaService, UserService} from '@app/_services';
 import {first} from 'rxjs/operators';
 import {StatusService} from '@app/_services/status.service';
-import {Dashboard} from "@app/_models/Dashboard";
-import {ProgressoHome} from "@app/_models/ProgressoHome";
+import {Dashboard} from '@app/_models/Dashboard';
+import {ProgressoHome} from '@app/_models/ProgressoHome';
 import {
   PageSettingsModel,
   CommandModel,
@@ -13,8 +13,8 @@ import {
   DialogEditEventArgs,
   SaveEventArgs,
   ToolbarItems
-} from "@syncfusion/ej2-grids";
-import {FormGroup} from "@angular/forms";
+} from '@syncfusion/ej2-grids';
+import {FormGroup} from '@angular/forms';
 
 
 @Component({
@@ -104,18 +104,6 @@ export class CronogramaComponent implements OnInit {
       {type: 'Save', buttonOption: {cssClass: 'e-flat', iconCss: 'e-update e-icons'}},
       {type: 'Cancel', buttonOption: {cssClass: 'e-flat', iconCss: 'e-cancel-icon e-icons'}}];
 
-
-    this.colunas = [{field: 'projeto', header: 'PROJETO'},
-      {field: 'descricao', header: 'DESCRICAO'},
-      {field: 'origem', header: 'ORIGEM'},
-      {field: 'lider', header: 'LIDER'},
-      {field: 'status', header: 'STATUS'},
-      {field: 'dt_INICIO_PREV', header: 'DATA INICIO PREVISTA'},
-      {field: 'dt_FIM_PREV', header: 'DATA FIM PREVISTA'},
-      // {field: 'dias_PREV', header: 'DIAS PREVISTOS'},
-      // {field: 'dt_INICIO', header: 'DATA INICIO'},
-      {field: 'dt_FIM', header: 'DATA FIM'}];
-
     this.selectedProjetos = null;
     this.selectUsuario = null;
     this.selectedCronograma = null;
@@ -124,9 +112,10 @@ export class CronogramaComponent implements OnInit {
 
   actionBegin(args: SaveEventArgs): void {
     if (args.requestType === 'beginEdit' || args.requestType === 'add') {
-      this.projeto = Object.assign(args.rowData);
+      this.cronograma = Object.assign(args.rowData);
     }
     if (args.requestType === 'save') {
+      console.log(this.selectedCronograma)
       if (this.orderForm.valid) {
         if (this.editCronograma.id) {
           const cronograma = new AtualizarCronograma(this.editCronograma, this.selectUsuario, this.selectedStatus);
@@ -157,7 +146,7 @@ export class CronogramaComponent implements OnInit {
               this.messageService.add({
                 severity: 'error',
                 summary: 'Erro ao cadastrar cronograma.'
-              })
+              });
             }
           );
         }
@@ -185,7 +174,7 @@ export class CronogramaComponent implements OnInit {
 
 
 
-buscaCronograma(){
+buscaCronograma() {
   this.cronogramaService.GET().subscribe(listaCronograma => {
     this.listaCronograma = listaCronograma;
   });

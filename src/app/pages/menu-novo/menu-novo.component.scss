@@ -1,8 +1,28 @@
-
+a{
+  display: flex;
+}
+.pi{
+  align-content: last;
+}
 #sidebar.active {
   margin-left: -250px;
 
 }
+.sidebar-image {
+  background: url(https://ej2.syncfusion.com/showcase/angular/expensetracker/assets/images/user.svg) no-repeat scroll 0 0 transparent;
+  background-position-x: left;
+  height: 85px;
+  width: 100%;
+  background-size: 85px;
+  /* margin-left: 20px; */
+}
+//{
+//  background: url(https://ej2.syncfusion.com/showcase/angular/expensetracker/assets/images/user.svg) no-repeat scroll 0 0 transparent;
+//  background-position-x: left;
+//  height: 85px;
+//  width: 100%;
+//  background-size: 85px;
+//}
 
 #sidebar {
   min-width: 250px;
@@ -44,12 +64,24 @@ a, a:hover, a:focus {
   text-decoration: none;
   transition: all 0.3s;
 }
-
+.sidebar-brand{
+  margin-top: 50px;
+}
 #sidebar {
   /* don't forget to add all the previously mentioned styles here too */
-  background: #2e4154;
-  color: #fff;
+  //margin-top: 10%;
+  background: white;
+  color: white;
+  font-size: 14px;
   transition: all 0.3s;
+  border: 1px solid #e0e0e0;
+}
+.list-unstyled{
+  //text-align: center;
+  color: black;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 48px;
 }
 
 #sidebar .sidebar-header {
@@ -59,7 +91,7 @@ a, a:hover, a:focus {
 
 #sidebar ul.components {
   padding: 20px 0;
-  border-bottom: 1px solid #2e4154;
+  //border-bottom: 1px solid #2e4154;
 }
 
 #sidebar ul p {
@@ -76,7 +108,7 @@ a, a:hover, a:focus {
 /*faz nada*/
 #sidebar ul li a:hover {
   color: #2e4154;
-  background: #fff;
+  background: #eeeeee;
 }
 /*faz nada*/
 #sidebar ul li.active > a, a[aria-expanded="true"] {

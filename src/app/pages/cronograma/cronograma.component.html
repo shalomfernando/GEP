@@ -1,7 +1,8 @@
 <style>
-  .ui-inputtext{
+  .ui-inputtext {
     text-transform: uppercase;
   }
+
   .e-rowcell {
     font-size: 12px;
   }
@@ -29,28 +30,53 @@
                   (actionComplete)='actionComplete($event)'
         >
           <e-columns>
-            <div *ngFor=" let col of colunas">
-              <e-column field="{{col.field}}"headerText="{{col.header}}" width="120"></e-column>
-            </div>
+            <e-column field="id" headerText="ID" isPrimaryKey='true' [visible]="false" width="120"></e-column>
+            <e-column field="projeto" headerText="Projeto" width="120"></e-column>
+            <e-column field="descricao" headerText="Descricao" width="100"></e-column>
+            <e-column field="origem" headerText="Origem" width="70"></e-column>
+            <e-column field="lider" headerText="Lider" width="100"></e-column>
+            <e-column field="status" headerText="Status" width="100"></e-column>
+            <e-column field="dt_INICIO" headerText="Inicio" width="100"></e-column>
+            <e-column field="dt_FIM" headerText="Fim" width="100" ></e-column>
             <e-column headerText='AÇÕES' width=100 [commands]='commands'></e-column>
           </e-columns>
           <ng-template #editSettingsTemplate let-data>
             <div ngForm #orderForm="ngForm">
               <div class="form-row">
                 <div class="form-group col-md-12">
+
                   <div class="e-float-input e-control-wrapper"
                        [ngClass]="{'e-error': id.invalid && (id.dirty || id.touched)}">
-                    <input [(ngModel)]="projeto.id" id="id" name="id" type="text"
-                           [attr.disabled]="true" #id="ngModel">
+                    <input [(ngModel)]="cronograma.id"
+                           id="id"
+                           name="id"
+                           type="text"
+                           [attr.disabled]="true"
+                           #id="ngModel">
                     <span class="e-float-line"></span>
                     <label class="e-float-text e-label-top" for="id">ID</label>
                   </div>
                   <div id="IDError" *ngIf='id.invalid && (id.dirty || id.touched)'>
                     <label class="e-error" id="id-info" style="display: block;">*ID é obrigatório.</label>
                   </div>
+
+
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <ejs-dropdownlist id="Projeto"
+                                        name="Projeto" [(ngModel)]="cronograma.id_projeto"
+                                        [dataSource]='projeto'
+                                        [fields]="{text:'nome',value:'id'}"
+                                        placeholder="Selecione um Projeto"
+                                        floatLabelType='Always'>
+
+                      </ejs-dropdownlist>
+                    </div>
+                  </div>
+
                   <div class="e-float-input e-control-wrapper"
                        [ngClass]="{'e-error': Nome.invalid && (Nome.dirty || Nome.touched)}">
-                    <input [(ngModel)]="projeto.nome" required id="Nome" name="Nome" type="text"
+                    <input [(ngModel)]="cronograma.nome" required id="Nome" name="Nome" type="text"
                            #Nome="ngModel">
                     <span class="e-float-line"></span>
                     <label class="e-float-text e-label-top" for="Nome">Nome</label>
@@ -60,37 +86,43 @@
                   </div>
 
                   <div class="e-float-input e-control-wrapper"
-                       [ngClass]="{'e-error': sigla.invalid && (sigla.dirty || sigla.touched)}">
-                    <input [(ngModel)]="projeto.sigla" required id="sigla" name="sigla" type="text"
-                           #sigla="ngModel">
+                       [ngClass]="{'e-error': Nome.invalid && (Nome.dirty || Nome.touched)}">
+                    <input [(ngModel)]="cronograma.descricao" required id="Descricao" name="Descricao" type="text"
+                           #Nome="ngModel">
                     <span class="e-float-line"></span>
-                    <label class="e-float-text e-label-top" for="sigla">Sigla</label>
+                    <label class="e-float-text e-label-top" for="Descricao">Descricao</label>
                   </div>
-                  <div id="SiglaError" *ngIf='sigla.invalid && (sigla.dirty || sigla.touched)'>
-                    <label class="e-error" id="Sigla-info" style="display: block;">*Sigla é obrigatório.</label>
+                  <div id="DescricaoError" *ngIf='Nome.invalid && (Nome.dirty || Nome.touched)'>
+                    <label class="e-error" id="Descricao-info" style="display: block;">*Nome é obrigatório.</label>
                   </div>
 
-                  <div class="e-float-input e-control-wrapper"
-                       [ngClass]="{'e-error': descricao.invalid && (descricao.dirty || descricao.touched)}">
-                    <input [(ngModel)]="projeto.descricao" required id="descricao" name="descricao" type="text"
-                           #descricao="ngModel">
-                    <span class="e-float-line"></span>
-                    <label class="e-float-text e-label-top" for="descricao">Descricao</label>
-                  </div>
-                  <div id="DescricaoError" *ngIf='descricao.invalid && (descricao.dirty || descricao.touched)'>
-                    <label class="e-error" id="descricao-info" style="display: block;">*Descricao é obrigatório.</label>
-                  </div>
+                  <!-- new-->
 
                   <div class="e-float-input e-control-wrapper"
-                       [ngClass]="{'e-error': objetivo.invalid && (objetivo.dirty || objetivo.touched)}">
-                    <input [(ngModel)]="projeto.objetivo" required id="objetivo" name="objetivo" type="text"
-                           #objetivo="ngModel">
+                       [ngClass]="{'e-error': Nome.invalid && (Nome.dirty || Nome.touched)}">
+                    <input [(ngModel)]="cronograma.origem" required id="Origem" name="Origem" type="text"
+                           #Nome="ngModel">
                     <span class="e-float-line"></span>
-                    <label class="e-float-text e-label-top" for="objetivo">Objetivo</label>
+                    <label class="e-float-text e-label-top" for="Origem">Origem</label>
                   </div>
-                  <div id="ObjetivoError" *ngIf='objetivo.invalid && (objetivo.dirty || objetivo.touched)'>
-                    <label class="e-error" id="objetivo-info" style="display: block;">*Objetivo é obrigatório.</label>
+                  <div id="OrigemError" *ngIf='Nome.invalid && (Nome.dirty || Nome.touched)'>
+                    <label class="e-error" id="Origem-info" style="display: block;">*Nome é obrigatório.</label>
                   </div>
+
+
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <ejs-dropdownlist id="Lider"
+                                        name="Lider"
+                                        [(ngModel)]="cronograma.lider"
+                                        [dataSource]='users'
+                                        [fields]="{text:'nome',value:'id'}"
+                                        floatLabelType='Always'
+                                        placeholder="Nome responsavel">
+                      </ejs-dropdownlist>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
