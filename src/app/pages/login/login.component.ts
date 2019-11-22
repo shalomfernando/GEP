@@ -37,7 +37,10 @@ export class LoginComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() {
+
+
     return this.loginForm.controls;
+    
   }
 
   onSubmit() {
@@ -54,6 +57,8 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           this.router.navigate([this.returnUrl]);
+          /**GAMBIARRA*/
+          window.location.reload();
         },
         error => {
           this.error = 'Nome de usuário ou senha está incorreta!';
