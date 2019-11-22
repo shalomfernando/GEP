@@ -209,12 +209,13 @@ span.sf-icon-down.icon {
 }
 
 .sidebar-image {
-  background: url(https://ej2.syncfusion.com/showcase/angular/expensetracker/assets/images/user.svg) no-repeat scroll 0 0 transparent;
+  background: url('../../../assets/images.png') no-repeat scroll 0 0 transparent;
   background-position-x: left;
   height: 85px;
   width: 100%;
   background-size: 85px;
-  /* margin-left: 20px; */
+  border-radius: 50px ;
+  margin-left: 20%;
 }
 
 .sidebar-brand {

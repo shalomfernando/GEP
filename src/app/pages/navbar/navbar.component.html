@@ -27,14 +27,17 @@
     <ejs-sidebar id="default-sidebar" #sidebar [width]='width' (created)="onCreated($event)" style="visibility: hidden">
       <div class="sidebar-header header-cover" style="background-color:#0378d5" >
         <div class="image-container">
-          <div class="sidebar-image">
+          <div class="col-4 sidebar-image" >
           </div>
         </div>
         <div style="padding: 0 0 5px 0;">
           <a class="sidebar-brand">
             {{user.nome}}
+
           </a>
-          <span class="sf-icon-down icon"></span>
+          <a (click)="logout()" class=" sf-icon-sign-in-alt"> Sair</a>
+
+          <span class="sf-icon-sign icon"></span>
         </div>
       </div>
 
@@ -64,19 +67,6 @@
             <span class="e-text">Tarefas</span>
           </a>
         </li>
-
-        <li>
-          <a href="#">
-            <i class="sf-icon-sidebar sf-icon-offline"></i>
-            <span class="e-text"> Sent</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="sf-icon-sidebar sf-icon-backup"></i>
-            <span class="e-text"> Draft</span>
-          </a>
-        </li>
       </ul>
     </ejs-sidebar>
     <!-- main content declaration -->
@@ -84,6 +74,9 @@
       <div class="content">
         <div id="left">
           <span id="hamburger" class="e-icons menu default" (click)="openClick()"></span>
+        </div>
+        <div>
+<!--          <span id="logouf" class="e-icons sign-in-alt default" (click)="logout()"></span>-->
         </div>
       </div>
       <div>

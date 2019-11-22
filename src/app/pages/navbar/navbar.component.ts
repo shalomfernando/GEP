@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {SidebarComponent} from '@syncfusion/ej2-angular-navigations';
 import {User} from "@app/_models";
+import {AuthenticationService} from "@app/_services";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +11,7 @@ import {User} from "@app/_models";
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   @ViewChild('sidebar', {static: false})
   public sidebar: SidebarComponent;
@@ -23,6 +25,11 @@ export class NavbarComponent implements OnInit {
   }
   openClick(): void {
     this.sidebar.toggle();
+  }
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+    window.location.reload();
   }
 
 }

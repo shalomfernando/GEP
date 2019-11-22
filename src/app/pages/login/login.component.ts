@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
+      window.location.reload();
     }
 
     this.loading = true;
