@@ -7,13 +7,17 @@
     font-size: 12px;
   }
 </style>
-
+ 
 <p-toast [style]="{marginTop: '50px'}"></p-toast>
 
 
 <div class="p-grid">
   <div class="p-col">
-    <p-card header="Cronograma">
+      <div class="row">
+          <i class="pi pi-folder" style="font-size: 100px"></i>
+          <h2 style="padding: 30px;">Cronograma</h2>
+        </div>
+    <p-card >
       <div style="text-align:right">
         <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
       </div>
