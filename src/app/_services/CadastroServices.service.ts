@@ -7,7 +7,7 @@ import {environment} from '@environments/environment';
 @Injectable({providedIn: 'root'})
 export class CadastroServicesService {
   constructor(private  http: HttpClient ) {}
-  SalvarCadastro() {
-    this.http.post<UserCadastro[]>(`${environment.apiUrl}/Cronograma`);
+  SalvarCadastro(savar: UserCadastro) {
+    return this.http.post<UserCadastro>(`${environment.apiUrl}/Usuario`, savar);
   }
 }
