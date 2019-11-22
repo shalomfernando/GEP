@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
-      window.location.reload();
     }
 
     this.loading = true;
@@ -57,7 +56,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate([this.returnUrl]);
         },
         error => {
-          this.error = 'Nomed de usuário ou senha está incorreta!';
+          this.error = 'Nome de usuário ou senha está incorreta!';
           this.loading = false;
         });
   }
