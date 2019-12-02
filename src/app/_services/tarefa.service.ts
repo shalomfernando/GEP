@@ -23,7 +23,7 @@ export class TarefaService {
   }
 
   deletarCronograma(id: number) {
-    return this.http.delete(`${environment.apiUrl}/Tarefa/${id}`).pipe(take(1)).subscribe();
+    return this.http.delete(`${environment.apiUrl}/Tarefa/${id}`).pipe(take(1));
 
   }
 

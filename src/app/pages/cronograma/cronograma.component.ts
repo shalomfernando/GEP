@@ -117,9 +117,8 @@ export class CronogramaComponent implements OnInit {
     if (args.requestType === 'save') {
       console.log(this.selectedCronograma)
       if (this.orderForm.valid) {
-        if (this.editCronograma.id) {
-          const cronograma = new AtualizarCronograma(this.editCronograma, this.selectUsuario, this.selectedStatus);
-          this.cronogramaService.PUT(cronograma, this.editCronograma.id).subscribe(
+        if (this.cronograma.id) {
+          this.cronogramaService.PUT(this.cronograma, this.cronograma.id).subscribe(
             () => {
               this.messageService.add({
                 severity: 'success',
@@ -134,8 +133,8 @@ export class CronogramaComponent implements OnInit {
             }
           );
         } else {
-          const cronograma = new SalvarCronograma(this.editCronograma, this.selectedProjetos, this.selectUsuario);
-          this.cronogramaService.salvarCronograma(cronograma).subscribe(() => {
+          this.cronograma.idUser = JSON.parse(localStorage.getItem('currentUser')).id;
+          this.cronogramaService.salvarCronograma(this.cronograma).subscribe(() => {
               this.messageService.add({
                 severity: 'success',
                 summary: 'Cronograma cadastrado com sucesso.',
@@ -157,7 +156,19 @@ export class CronogramaComponent implements OnInit {
     }
     if (args.requestType === 'delete') {
       console.log(args.data[0].id);
-      this.projetoService.deletarProjeto(args.data[0].id);
+      this.cronogramaService.deletarCronograma(args.data[0].id).subscribe(() =>{
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Cronograma deletado com sucesso.',
+            sticky: true
+          });
+        },
+        r => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro ao deletar cronograma.'
+          });
+      });
     }
   }
 

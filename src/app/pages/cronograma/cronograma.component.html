@@ -17,10 +17,6 @@
           <i class="pi pi-folder" style="font-size: 100px"></i>
           <h2 style="padding: 30px;">Cronograma</h2>
         </div>
-    <p-card >
-      <div style="text-align:right">
-        <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
-      </div>
       <div>
         <ejs-grid [dataSource]="listaCronograma"
                   [allowPaging]='true'
@@ -118,7 +114,7 @@
                     <div class="form-group col-md-12">
                       <ejs-dropdownlist id="Lider"
                                         name="Lider"
-                                        [(ngModel)]="cronograma.lider"
+                                        [(ngModel)]="cronograma.id_lider"
                                         [dataSource]='users'
                                         [fields]="{text:'nome',value:'id'}"
                                         floatLabelType='Always'
@@ -133,8 +129,6 @@
           </ng-template>
         </ejs-grid>
       </div>
-    </p-card>
-
   </div>
 
 </div>

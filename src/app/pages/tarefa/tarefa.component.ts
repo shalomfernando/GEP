@@ -173,7 +173,18 @@ export class TarefaComponent implements OnInit {
       }
     }
     if (args.requestType === 'delete') {
-      this.tarefaService.deletarCronograma(args.data[0].id);
+      this.tarefaService.deletarCronograma(args.data[0].id).subscribe(()=>{
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Tarefa deletada com sucesso.'
+          });
+        },
+        r => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro ao deletar tarefa.'
+          })
+      });
     }
   }
 

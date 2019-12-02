@@ -22,6 +22,6 @@ export class CronogramaService {
   }
 
   deletarCronograma(id) {
-    return this.http.delete(`${environment.apiUrl}/Cronograma/${id}`).pipe(take(1)).subscribe();
+    return this.http.delete(`${environment.apiUrl}/Cronograma/${id}`).pipe(take(1));
   }
 }

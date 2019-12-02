@@ -14,6 +14,7 @@ export class Cronograma {
       id_lider: number;
       id_projeto: number;
       id_status: number;
+      idUser: number;
       // tarefa: any;
 
   // tslint:disable-next-line:variable-name

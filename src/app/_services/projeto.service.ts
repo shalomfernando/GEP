@@ -28,7 +28,7 @@ export class ProjetoService {
   }
 
   deletarProjeto(id: number) {
-    return this.http.delete(`${environment.apiUrl}/Projeto/${id}`).pipe(take(1)).subscribe();
+    return this.http.delete(`${environment.apiUrl}/Projeto/${id}`).pipe(take(1));
   }
 
 

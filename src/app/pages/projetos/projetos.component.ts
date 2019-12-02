@@ -116,7 +116,19 @@ export class ProjetosComponent implements OnInit {
     }
     if (args.requestType === 'delete') {
       console.log(args.data[0].id);
-      this.projetoService.deletarProjeto(args.data[0].id);
+      this.projetoService.deletarProjeto(args.data[0].id).subscribe(() =>{
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Projeto deletado com sucesso.',
+            sticky: true
+          });
+        },
+        r => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro ao deletar projeto.'
+          });
+      });
     }
   }
 

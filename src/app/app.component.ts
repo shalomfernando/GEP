@@ -18,7 +18,7 @@ export class AppComponent {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
-  static ngOnInit(): void {
+  ngOnInit(): void {
     setCulture('pt_br');
 
     L10n.load({
