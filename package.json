@@ -45,7 +45,7 @@
     "@syncfusion/ej2-layouts": "^17.3.27",
     "boostrap": "^2.0.0",
     "bootstrap": "^4.3.1",
-    "chart.js": "^2.9.0",
+    "chart.js": "^2.9.4",
     "cldr-data": "^36.0.0",
     "core-js": "^3.3.4",
     "ej-angular2": "^17.3.26",
